@@ -1,22 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-        // Loginpage
-        const loginBtn = document.getElementById('loginBtn');
-        const closeBtn = document.getElementById('closeBtn');
-        const loginModal = document.getElementById('loginModal');
-    
-        loginBtn.onclick = () => {
-            loginModal.style.display = 'block';
-        }
-    
-        closeBtn.onclick = () => {
-            loginModal.style.display = 'none';
-        }
-    
-        window.onclick = (event) => {
-            if (event.target === loginModal) {
-                loginModal.style.display = 'none';
-            }
-        }
     // Hamburger menu toggle
     const hamburgerIcon = document.querySelector("hamburger-icon");
     const hamburgerMenu = document.getElementById("hamburger-menu");

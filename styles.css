@@ -1,4 +1,48 @@
-/* Variables for colors */
+.hidden {
+    display: none;
+  }
+  
+  #hamburger-menu {
+    background-color: var(--primary);
+    position: absolute;
+    top: calc(100% + 0.5rem); /* Position the menu just below the nav bar */
+    right: 0;
+    padding: 1rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+    z-index: 100;
+    display: none; /* Hide the menu by default */
+  }
+  
+  nav.active #hamburger-menu {
+    display: block; /* Show the menu when the nav is active */
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative; /* Position the nav element relative to its container */
+  }
+  
+  .nav-link {
+    display: block; /* Set the links to display as block elements */
+    color: var(--secondary);
+    text-decoration: none;
+    margin-bottom: 0.5rem; /* Add some vertical spacing between the links */
+  }
+  
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 70px);
+    position: relative;
+}
+
+
 :root {
     --background: #EEE0CB;
     --primary: #839788;
@@ -7,57 +51,107 @@
     --accent: #BFD7EA;
 }
 
-/* Body styling and structure */
 body {
-    font-family: 'Inter', sans-serif;
     background-color: var(--background);
+    font-family: Arial, sans-serif;
+    color: var(--secondary);
     margin: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  
 }
 
-/* Header styling and structure */
 header {
+    background-color: var(--primary);
+    padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background-color: var(--primary);
 }
 
-/* Heading 1 (h1) styling */
-h1 {
+
+header h1 {
     margin: 0;
     color: var(--secondary);
 }
 
-/* Navigation styling and structure */
-nav {
+header nav {
     display: flex;
     align-items: center;
     gap: 1rem;
 }
 
-/* Nav link styling */
 .nav-link {
     color: var(--secondary);
     text-decoration: none;
 }
 
-/* Nav link hover effect */
 .nav-link:hover {
     color: var(--accent);
 }
 
-/* Button styling */
+hamburger-icon {
+    display: inline-block;
+    width: 30px;
+    height: 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+hamburger-icon span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--secondary);
+    position: absolute;
+    left: 0;
+}
+
+hamburger-icon span:nth-child(1) {
+    top: 0;
+}
+
+hamburger-icon span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+hamburger-icon span:nth-child(3) {
+    bottom: 0;
+}
+
+main {
+
+    text-align: center;
+}
+
+
+#home-title {
+    font-size: 7rem;
+    margin: 2rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(calc(-90% + 20px));
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+input {
+    background-color: var(--tertiary);
+    border: none;
+    padding: 0.5rem;
+    color: var(--background);
+}
 
 .btn {
     width: 6.5em;
     height: 2.3em;
     margin: 0.5em;
-    background: white;
-    color: black;
+    background: black;
+    color: white;
     border: none;
     border-radius: 0.625em;
     font-size: 20px;
@@ -69,12 +163,12 @@ nav {
    }
    
    button:hover {
-    color:white;
+    color: black;
    }
    
    button:after {
     content: "";
-    background:black;
+    background: white;
     position: absolute;
     z-index: -1;
     left: -20%;
@@ -90,276 +184,44 @@ nav {
     -webkit-transition: all 0.5s;
     transition: all 0.5s;
    }
-
-/* Main content area styling and structure */
-.main-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-}
-
-/* Green box styling and structure */
-.green-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 756px;
-    height: 460px;
-    background-color: #839788;
-    border-radius: 8px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-}
-
-/* Modal content styling and structure */
-.modal-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 376px;
-    height: 432px;
-    background-color: #D9D9D9;
-    border: 1px solid #000000;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    padding: 20px;
-}
-
-
-/* Heading 2 (h2) styling */
-h2 {
-    margin-bottom: 1rem;
-    color: #FFFFFF;
-    font-size: 40px;
-    line-height: 48px;
-    font-weight: 500;
-}
-
-input[type="email"], input[type="text"], input[type="password"] {
-    background-color: #726C6C;
-    color: white;
-    padding: 0.5rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border: none;
-    width: 100%;
-    width: 247px;
-    height: 42px;
-    box-sizing: border-box;
-}
-
-input[type="email"]::placeholder, input[type="text"]::placeholder, input[type="password"]::placeholder {
-    color: white;
-    font-size: 20px;
-}
-
-
-/* Submit button styling */
-input[type="submit"] {
-    font-size: 25px;
-    margin-left: 20%;
-    background-color: white;
-    padding: 0.5rem 1rem;
-    border: none;
-    cursor: pointer;
-    margin-top: 3rem; /* Add some margin to the top */
-    width: 146px; /* Set the width */
-    height: 55px; /* Set the height */
-}
-
-
-/* Footer styling */
-footer {
-    background-color: var(--primary);
-    padding: 1rem;
-    text-align: center;
-}
-
-/* Main content area styling and structure */
-.main-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-grow: 1;
-    }
-    
-    /* Books container styling */
-    .books-container {
+#book-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    padding: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    }
-    
-    /* Book styling */
-    .book {
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    }
-    
-    /* Book cover image styling */
-    .book img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 8px 8px 0 0;
-    }
-    
-    /* Book info styling */
-    .book-info {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.book {
+    background-color: var(--tertiary);
     padding: 1rem;
-    }
-    
-    /* Book info h2 styling */
-    .book-info h2 {
+    border-radius: 0.5rem;
+}
+
+.book h3 {
     margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-size: 1.5rem;
-    }
-    
-    /* Book info p styling */
-    .book-info p {
-    margin: 0;
-    margin-bottom: 0.5rem;
-    }
-    
-    /* Book details button styling */
-    .book-info .btn {
-    align-self: flex-end;
-    }
+}
 
-    .search-bar {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 20px;
-        margin-bottom: 20px;
-      }
-      
-      .search-bar form {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      
-      .search-bar input[type="text"] {
-        width: 300px;
-        height: 40px;
-        padding: 5px;
-        margin-right: 10px;
-        font-size: 16px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
-      
-      .search-bar button[type="submit"] {
-        height: 40px;
-        padding: 5px 10px;
-        background-color: #007bff;
-        color: #fff;
-        font-size: 16px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
 
-    /* Hamburger Button */
-.hamburger-btn {
-    display: none;
-    border: none;
-    background: none;
-    cursor: pointer;
-    margin-left: auto;
-    margin-right: 10px;
-    height: 30px;
-    width: 30px;
-    position: relative;
-    z-index: 1;
+.typewriter h2 {
+    font-size: 7rem;
+    margin: 2rem;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: .15em; /* Adjust as needed */
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end infinite;
   }
   
-  .hamburger-icon {
-    position: absolute;
-    height: 3px;
-    width: 100%;
-    background-color: black;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: transform 0.3s ease;
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
   }
   
-  .hamburger-icon::before,
-  .hamburger-icon::after {
-    content: "";
-    position: absolute;
-    height: 3px;
-    width: 100%;
-    background-color: black;
-    transition: transform 0.3s ease;
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
   }
-  
-  .hamburger-icon::before {
-    top: -10px;
-  }
-  
-  .hamburger-icon::after {
-    bottom: -10px;
-  }
-  
-  /* Mobile Navigation */
-  .mobile-nav {
-    display: none;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background-color: white;
-    padding: 20px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .mobile-nav a {
-    display: block;
-    margin-bottom: 10px;
-    color: black;
-    font-weight: bold;
-    text-decoration: none;
-  }
-  
-  /* Media Queries */
-  @media only screen and (max-width: 768px) {
-    .hamburger-btn {
-      display: block;
-    }
-    
-    .nav-link {
-      display: none;
-    }
-    
-    .mobile-nav {
-      display: block;
-    }
-    
-    .hamburger-icon {
-      transform: rotate(0deg);
-    }
-    
-    .hamburger-icon::before {
-      transform: rotate(45deg);
-      top: 0;
-    }
-    
-    .hamburger-icon::after {
-      transform: rotate(-45deg);
-      bottom: 0;
-    }
-    
-    #mobileNav.open {
-      display: block;
-    }
-  }
-  

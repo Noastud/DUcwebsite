@@ -1,4 +1,4 @@
-x<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,9 +12,7 @@ x<!DOCTYPE html>
         <h1>Book Archive</h1>
 
     <nav>
-            <a href="login.html">Login</a>
             <button class="btn"> Login</button>
-            
         <hamburger-icon>
             <span></span>
             <span></span>
@@ -32,5 +30,12 @@ x<!DOCTYPE html>
             <h2>Bookly: Browse Antique Books.</h2>
           </div>
     </main>
+    <script>const hamburger = document.querySelector('hamburger-icon');
+        const nav = document.querySelector('header nav');
+        
+        hamburger.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+        </script>
 </body>
 </html>
