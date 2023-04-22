@@ -9,12 +9,22 @@
     <script src="scripts.js" defer></script>
 </head>
 <body>
-    <header>
+<header>
         <h1>Book Archive</h1>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="archive.html">Archive</a>
-        </nav>
+
+    <nav>
+            <button class="btn"> Login</button>
+        <hamburger-icon>
+            <span></span>
+            <span></span>
+            <span></span>
+        </hamburger-icon>
+        <div id="hamburger-menu" class="hidden">
+            <a href="admin.html" class="nav-link">Admin Panel</a>
+            <a href="book-overview.html" class="nav-link">Book Overview</a>
+            <a href="register.html" class="nav-link">Register</a>
+        </div>
+    </nav>
     </header>
     <main>
         <h2>Archived Books</h2>
@@ -33,6 +43,13 @@
             <!-- Books will be dynamically added here -->
         </section>
     </main>
+    <script>const hamburger = document.querySelector('hamburger-icon');
+        const nav = document.querySelector('header nav');
+        
+        hamburger.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+        </script>
 </body>
 </html>
 </php>

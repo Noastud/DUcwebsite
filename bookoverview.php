@@ -9,16 +9,23 @@
 </head>
 
 <body>
-    <header>
+<header>
         <h1>Book Archive</h1>
-        <nav>
-            <a href="#" class="nav-link">Home</a>
-            <a href="#" class="nav-link">Books</a>
-            <a href="#" class="nav-link">Contact</a>
-            <button class="btn" id="loginBtn">Login</button>
-        </nav>
-    </header>
 
+    <nav>
+            <button class="btn"> Login</button>
+        <hamburger-icon>
+            <span></span>
+            <span></span>
+            <span></span>
+        </hamburger-icon>
+        <div id="hamburger-menu" class="hidden">
+            <a href="admin.html" class="nav-link">Admin Panel</a>
+            <a href="book-overview.html" class="nav-link">Book Overview</a>
+            <a href="register.html" class="nav-link">Register</a>
+        </div>
+    </nav>
+    </header>
     <div class="search-bar">
         <form>
             <input type="text" placeholder="Search...">
@@ -122,6 +129,13 @@
                 </div>
             </div>
         </div>
+        <script>const hamburger = document.querySelector('hamburger-icon');
+        const nav = document.querySelector('header nav');
+        
+        hamburger.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+        </script>
     </body>
     
     </html>
