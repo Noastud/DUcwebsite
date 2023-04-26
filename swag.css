@@ -1,0 +1,58 @@
+body {
+  background-color: #BAA898;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #839788;
+  margin: 0;
+}
+
+header.top-banner {
+  background-color: #839788;
+  color: #EEE0CB;
+  padding: 10px;
+}
+
+.logo h1 {
+  margin: 0;
+  font-size: 32px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.navbar ul {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar li {
+  margin-right: 20px;
+}
+
+.navbar li:last-child {
+  margin-right: 0;
+}
+
+.navbar a {
+  color: #EEE0CB;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.hamburger {
+  display: none;
+}
+
+.main-content {
+  background-color: #EEE0CB;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+}
+
