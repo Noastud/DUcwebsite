@@ -1,3 +1,12 @@
+.title5 {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .title5 h1 {
+    font-size: 50px;
+    margin: 0;
+  }
 .hidden {
     display: none;
   }
@@ -200,7 +209,7 @@ input {
     margin-top: 0;
 }
 
-
+ 
 .typewriter h2 {
     font-size: 7rem;
     margin: 2rem;
