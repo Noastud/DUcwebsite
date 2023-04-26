@@ -18,33 +18,62 @@
   }
   
   .title5 h1 {
-    font-size: 50px;
-    margin: 0;
+
+font-size: 96px;
+font-weight: 500;
+line-height: 144px;
+letter-spacing: -0.022em;
+text-align: center;
+
   }
 
-  .search-bar input[type="text"] {
-background-color: #FFFFFF;
-width: 60%; /* geändert auf 50% */
-border-radius: 25px;
-padding: 10px;
-border: none;
-outline: none;
-}
-.search-bar {
-display: flex;
-justify-content: center;
-align-items: center;
-margin: 20px auto;
-position: relative; 
+  .search-bar {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .search-bar input[type="text"] {
-background-color: #FFFFFF;
-width: 80%;
-border-radius: 25px;
-padding: 10px;
-border: none;
-outline: none;
+    background-color: #FFFFFF;
+    width: 250%;
+    border-radius: 25px;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+
+.popup {
+    position: absolute;
+    top: 55px;
+    left: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow-y: scroll;
+    background-color: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 8px;
+    z-index: 1;
+    display: none;
+}
+
+.popup ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.popup ul li {
+    padding: 8px;
+    font-size: 18px;
+    color: #1F2041;
+    cursor: pointer;
+}
+
+.popup ul li:hover {
+    background-color: #F5F5F5;
 }
 
 .search-bar button {
@@ -66,6 +95,7 @@ color: #555;
 line-height: 40px;
 text-align: center;
 display: block;
+
 }
     </style>
 
@@ -92,12 +122,22 @@ display: block;
   <h1>Bookly</h1>
 </div>
     
-    <div class="search-bar">
-        <form method="post" action="search.php">
-            <input type="text" name="search_query" placeholder="Search...">
-            <button type="submit" name="search_btn">Search</button>
-        </form>
+<div class="search-bar">
+    <form method="post" action="Description.php">
+        <input type="text" name="search_query" placeholder="Search..." onfocus="showPopup()">
+        <button type="submit" name="search_btn"></button>
+    </form>
+    <div class="popup" id="popup">
+        <ul>
+            <li>Recommendation 1</li>
+            <li>Recommendation 2</li>
+            <li>Recommendation 3</li>
+            <li>Recommendation 4</li>
+            <li>Recommendation 5</li>
+        </ul>
     </div>
+</div>
+
 
     <div class="main-content">
         <div class="books-container">
@@ -106,7 +146,7 @@ display: block;
 session_start();
 
 // Stelle die Verbindung zur Datenbank her
-$conn = mysqli_connect("localhost", "username", "password", "database_name");
+$conn = mysqli_connect("localhost", "root", "", "books");
 
 // Überprüfe die Verbindung
 if (!$conn) {
@@ -176,6 +216,49 @@ if(isset($_POST['search_btn'])) {
         hamburger.addEventListener('click', function() {
             nav.classList.toggle('active');
         });
+
+
+        function showPopup() {
+    var popup = document.getElementById("popup");
+    var input = document.querySelector(".search-bar input[type='text']");
+    var search_query = input.value;
+    if (search_query !== '') {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'Description.php?search_query=' + search_query);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                var results = JSON.parse(xhr.responseText);
+                var ul = document.createElement('ul');
+                results.forEach(function(result) {
+                    var li = document.createElement('li');
+                    li.textContent = result;
+                    ul.appendChild(li);
+                });
+                popup.innerHTML = '';
+                popup.appendChild(ul);
+                popup.style.display = "block";
+            } else {
+                console.log('Request failed. Returned status of ' + xhr.status);
+            }
+        };
+        xhr.send();
+    }
+}
+
+
+function hidePopup() {
+    var popup = document.getElementById("popup");
+    popup.style.display = "none";
+}
+
+document.addEventListener("click", function(event) {
+    var popup = document.getElementById("popup");
+    var input = document.querySelector(".search-bar input[type='text']");
+    if (event.target !== popup && event.target !== input) {
+        hidePopup();
+    }
+});
+
         </script>
 </body>
 </html>

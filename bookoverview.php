@@ -147,16 +147,15 @@ if (mysqli_num_rows($result) > 0) {
     while($row = mysqli_fetch_assoc($result)) {
         $random_cover = "https://picsum.photos/300/450?random=" . $row['id'];
         echo '<div class="book">';
-echo '<div class="book-info">';
-echo '<h3 class="book-title">' . $row['kurztitle'] . '</h3>';
-echo '<p class="book-author"><strong>Author:</strong> ' . $row['autor'] . '</p>';
-echo '<p class="book-category"><strong>Category:</strong> ' . $row['zustand'] . '</p>';
-echo '<p class="book-language"><strong>Language:</strong> ' . $row['sprache'] . '</p>';
-echo '<button class="btn">More Details</button>';
-echo '</div>';
-echo '<div class="book-image" style="background-image: url(' . $random_cover . ')"></div>';
-echo '</div>';
-
+        echo '<div class="book-info">';
+        echo '<h3 class="book-title">' . $row['kurztitle'] . '</h3>';
+        echo '<p class="book-author"><strong>Author:</strong> ' . $row['autor'] . '</p>';
+        echo '<p class="book-category"><strong>Category:</strong> ' . $row['zustand'] . '</p>';
+        echo '<p class="book-language"><strong>Language:</strong> ' . $row['sprache'] . '</p>';
+        echo '<a href="Description.php?id=' . $row['id'] . '" class="btn">More Details</a>';
+        echo '</div>';
+        echo '<div class="book-image" style="background-image: url(' . $random_cover . ')"></div>';
+        echo '</div>';
     }
 } else {
     echo "0 results";
@@ -164,6 +163,7 @@ echo '</div>';
 
 mysqli_close($conn);
 ?>
+
 
         </div>
     </div>

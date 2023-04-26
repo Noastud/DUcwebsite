@@ -1,53 +1,99 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Impressum - Bookly</title>
-    <link rel="stylesheet" type="text/css" href="swag.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  </head>
-  <body>
-    <header class="top-banner">
-      <div class="logo">
-        <h1>Bookly</h1>
-      </div>
-      <nav class="navbar">
-        <ul>
-          <li><a href="login.html">Home</a></li>
-          <li><a href="archive.html">About</a></li>
-          <li><a href="index.html">Books</a></li>
-          <li><a href="register.html">Contact</a></li>
-        </ul>
-        <div class="hamburger">
-          <div class="bar"></div>
-          <div class="bar"></div>
-          <div class="bar"></div>
-        </div>
-      </nav>
-    </header>
-    <div class="main-box">
-      <div class="main-content">
-        <h2>Impressum</h2>
-        <p>Bookly<br>
-          Penisstraße 1<br>
-          12345 Penisstadt<br>
-          Penisland</p>
-        <h3>Vertreten durch:</h3>
-        <p>Julien und Noa (Geschäftsführer)</p>
-        <h3>Kontakt:</h3>
-        <p>Telefon: +00 123 456789<br>
-          E-Mail: info@bookly.com</p>
-        <h3>Registereintrag:</h3>
-        <p>Registergericht: Amtsgericht Penisstadt<br>
-          Registernummer: HRB 12345</p>
-        <h3>Umsatzsteuer-ID:</h3>
-        <p>Umsatzsteuer-Identifikationsnummer gemäß Umsatzsteuergesetz:<br>
-          123456789</p>
-        <h3>Verantwortlich für den Inhalt:</h3>
-        <p>Julien und Noa<br>
-          Penisstraße 1<br>
-          12345 Penisstadt</p>
-      </div>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Archive - Impressum</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js" defer></script>
+  <style>
+      .container {
+      
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 48px;
+    letter-spacing: 0em;
+    text-align: center;
+      
+    font-family: Inter;
+    font-size: 45px;
+    font-weight: 500;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-align: center;
+      
+      
+      }
+    
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #EEE0CB;
+    }
+
+    .btn {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #fff;
+      color: #000;
+    }
+    a {
+  color: #000000; /* change the color to red */
+  text-decoration: none; /* remove the underline */
+}
+nav a {
+  color: #ffffff; /* change the color to red */
+  text-decoration: none; /* remove the underline */
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Book Archive</h1>
+
+<nav>
+        <button class="btn" ><a href="login.php"> Login</a></button>
+    <hamburger-icon>
+        <span></span>
+        <span></span>
+        <span></span>
+    </hamburger-icon>
+    <div id="hamburger-menu" class="hidden">
+        <a href="admin.html" class="nav-link">Admin Panel</a>
+        <a href="bookoverview.php" class="nav-link">Book Overview</a>
+        <a href="register.html" class="nav-link">Register</a>
     </div>
-    <script src="jabba.js"></script>
-  </body>
+</nav>
+</header>
+  <main>
+    <div class="container">
+      <h2>Impressum</h2>
+      <p>Angaben gemäß § 5 TMG</p>
+      <p>Book Archive</p>
+      <p>Max Mustermann</p>
+      <p>Musterstraße 1</p>
+      <p>12345 Musterstadt</p>
+      <p>Deutschland</p>
+      <p>Telefon: 01234 56789</p>
+      <p>E-Mail: info@bookarchive.com</p>
+    </div>
+  </main>
+  <script>const hamburger = document.querySelector('hamburger-icon');
+    const nav = document.querySelector('header nav');
+    
+    hamburger.addEventListener('click', function() {
+        nav.classList.toggle('active');
+    });
+    </script>
+</body>
 </html>
