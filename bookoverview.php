@@ -4,81 +4,115 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-  
-    <style>
-        body {
-            background-color: #EEE0CB;
-            font-family: Arial, sans-serif;
-            color: #000;
-            margin: 0;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem;
-        }
-        .book {
-            background-color: #fff;
-            border-radius: 1rem;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
-            margin: 1rem;
-            overflow: hidden;
-            display: flex;
-        }
-        .book-info {
-            width: 50%;
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            margin-left: 2rem;
-        }
-        .book-image {
-            width: 40%;
-            background-position: center;
-            background-size: contain;
-            background-repeat: no-repeat;
-        }
-        .book-title {
-            font-size: 2rem;
-            margin: 0;
-        }
-        .book-author {
-            font-size: 1.2rem;
-            margin: 0.5rem 0;
-        }
-        .book-category {
-            font-size: 1.2rem;
-            margin: 0.5rem 0;
-        }
-        .book-language {
-            font-size: 1.2rem;
-            margin: 0.5rem 0;
-        }
-        .book-condition {
-            font-size: 1.2rem;
-            margin: 0.5rem 0;
-        }
-        .btn {
-            background-color: #000;
-            color: #fff;
-            border: none;
-            border-radius: 0.5rem;
-            padding: 0.5rem 1rem;
-            font-size: 1.2rem;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background-color: #fff;
-            color: #000;
-        }
+<style>
+    body {
+      background-color: #EEE0CB;
+      font-family: Arial, sans-serif;
+      color: #000;
+      margin: 0;
+    }
+
+    .book-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* center the book containers horizontally */
+      max-width: 1200px;
+      margin: 0 auto; /* center the book container vertically */
+    }
+
+    .book {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      position: relative;
+      width: calc(33.33% - 2rem);
+      height: 360px;
+      background-color: #fff;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease-in-out;
+      overflow: hidden;
+      background-color: transparent;
+    }
+
+    .book:hover {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      transform: translateY(-10px);
+    }
+
+    .book-image {
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 60%;
+      height: 100%;
+      object-fit: cover; /* maintain aspect ratio of book cover image */
+    }
+
+    .book-info {
+      position: relative;
+      width: 40%;
+      height: 100%;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      background-color: transparent;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .book:hover .book-info {
+      transform: translateX(5%);
+    }
+
+    .book-title {
+      font-size: 1.5rem;
+      margin: 0.5rem 0;
+    }
+
+    .book-author {
+      font-size: 1rem;
+      margin: 0.25rem 0;
+    }
+
+    .book-category {
+      font-size: 1rem;
+      margin: 0.25rem 0;
+    }
+
+    .book-language {
+      font-size: 1rem;
+      margin: 0.25rem 0;
+    }
+
+    .book-condition {
+      font-size: 1rem;
+      margin: 0.25rem 0;
+    }
+
+    .btn {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+
     </style>
 </head>
 <body>
     <header>
         <h1>Book Archive</h1>
         <nav>
-            <button class="btn"> Login</button>
+            <button class="btn">Login</button>
             <hamburger-icon>
                 <span></span>
                 <span></span>
@@ -86,72 +120,59 @@
             </hamburger-icon>
             <div id="hamburger-menu" class="hidden">
                 <a href="admin.html" class="nav-link">Admin Panel</a>
-                <a href="book-overview.html" class="nav-link">Book Overview</a>
+                <a href="Search.html" class="nav-link">Search</a>
                 <a href="register.html" class="nav-link">Register</a>
             </div>
         </nav>
     </header>
-    <div class="search-bar">
-        <form>
-            <input type="text" placeholder="Search...">
-            <button type="submit">Search</button>
-        </form>
-    </div>
-    <div class="main-content">
-        <div class="books-container">
-        <?php
 
+    <div class="main-content">
+        <div class="book-container">
+        <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "books";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = mysqli_connect($servername, $username, $password, $dbname);
 
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} else {
-    echo "Connected successfully<br>";
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
 
-$sql = "SELECT id, kurztitle, autor, title, foto, sprache, verfasser, zustand FROM buecher";
-$result = $conn->query($sql);
+$sql = "SELECT id, kurztitle, autor, sprache, zustand FROM buecher";
+$result = mysqli_query($conn, $sql);
 
-
-if ($result->num_rows > 0) {
-    $i = 0;
-    echo '<div class="books-container">';
-    while($row = $result->fetch_assoc()) {
-        if ($i % 3 == 0) {
-            echo '<div class="book-row">';
-        }
+if (mysqli_num_rows($result) > 0) {
+    while($row = mysqli_fetch_assoc($result)) {
+        $random_cover = "https://picsum.photos/300/450?random=" . $row['id'];
         echo '<div class="book">';
+echo '<div class="book-info">';
+echo '<h3 class="book-title">' . $row['kurztitle'] . '</h3>';
+echo '<p class="book-author"><strong>Author:</strong> ' . $row['autor'] . '</p>';
+echo '<p class="book-category"><strong>Category:</strong> ' . $row['zustand'] . '</p>';
+echo '<p class="book-language"><strong>Language:</strong> ' . $row['sprache'] . '</p>';
+echo '<button class="btn">More Details</button>';
+echo '</div>';
+echo '<div class="book-image" style="background-image: url(' . $random_cover . ')"></div>';
+echo '</div>';
 
-        $random_image_url = 'https://picsum.photos/300/450';
-        echo '<div class="book-info">';
-        echo '<h2>' . $row["kurztitle"] . '</h2>';
-        echo '<p>' . $row["autor"] . '</p>';
-        echo '<p>Language: ' . $row["sprache"] . '</p>';
-        echo '<p>Condition: ' . $row["zustand"] . '</p>';
-        echo '<button class="btn">Details</button>';
-        echo '</div>';
-        echo '<div class="book-image" style="background-image: url(' . $random_image_url . ')"></div>';
-        echo '</div>';
-        $i++;
-        if ($i % 3 == 0) {
-            echo '</div>';
-            echo '<div class="book-row">';
-        }
     }
-    if ($i % 3 != 0) {
-        echo '</div>';
-    }
-    echo '</div>';
 } else {
-    echo "No books found.";
+    echo "0 results";
 }
 
-
-$conn->close();
+mysqli_close($conn);
 ?>
+
+        </div>
+    </div>
+    <script>const hamburger = document.querySelector('hamburger-icon');
+        const nav = document.querySelector('header nav');
+        
+        hamburger.addEventListener('click', function() {
+            nav.classList.toggle('active');
+        });
+        </script>
+</body>
+</html>

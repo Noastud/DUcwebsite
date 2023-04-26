@@ -66,7 +66,6 @@ color: #555;
 line-height: 40px;
 text-align: center;
 display: block;
-
 }
     </style>
 
