@@ -10,22 +10,26 @@
 </head>
 <body>
 <header>
-        <h1>Bookly</h1>
+  <button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
+    <div class="logo">
+      <h1>Bookly</h1>
+    </div>
+  </button>
+  <nav>
+    <button class="btn" onclick="location.href='login.php'">Login</button>
+    <hamburger-icon>
+      <span></span>
+      <span></span>
+      <span></span>
+    </hamburger-icon>
+    <div id="hamburger-menu" class="hidden">
+      <a href="admin.html" class="nav-link">Admin Panel</a>
+      <a href="bookoverview.php" class="nav-link">Book Overview</a>
+      <a href="register.html" class="nav-link">Register</a>
+    </div>
+  </nav>
+</header>
 
-        <nav>
-        <button class="btn" onclick="location.href='login.php'">Login</button>
-        <hamburger-icon>
-            <span></span>
-            <span></span>
-            <span></span>
-        </hamburger-icon>
-        <div id="hamburger-menu" class="hidden">
-            <a href="admin.html" class="nav-link">Admin Panel</a>
-            <a href="bookoverview.php" class="nav-link">Book Overview</a>
-            <a href="register.html" class="nav-link">Register</a>
-        </div>
-    </nav>
-    </header>
     <main>
         <h2>Archived Books</h2>
         <section>

@@ -1,462 +1,459 @@
+#hamburger-menu {
+  background-color: var(--primary);
+  position: absolute;
+  top: calc(100% + 0.5rem); /* Position the menu just below the nav bar */
+  right: 0;
+  padding: 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  z-index: 100;
+  display: none; /* Hide the menu by default */
+}
 
-  
-  #hamburger-menu {
-    background-color: var(--primary);
-    position: absolute;
-    top: calc(100% + 0.5rem); /* Position the menu just below the nav bar */
-    right: 0;
-    padding: 1rem;
-    border-radius: 0 0 0.5rem 0.5rem;
-    z-index: 100;
-    display: none; /* Hide the menu by default */
-  }
-  
-  nav.active #hamburger-menu {
-    display: block; /* Show the menu when the nav is active */
-  }
-  
-  nav {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    position: relative; /* Position the nav element relative to its container */
-  }
-  
-  .nav-link {
-    display: block; /* Set the links to display as block elements */
-    color: var(--secondary);
-    text-decoration: none;
-    margin-bottom: 0.5rem; /* Add some vertical spacing between the links */
-  }
-  
+nav.active #hamburger-menu {
+  display: block; /* Show the menu when the nav is active */
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative; /* Position the nav element relative to its container */
+}
+
+.nav-link {
+  display: block; /* Set the links to display as block elements */
+  color: var(--secondary);
+  text-decoration: none;
+  margin-bottom: 0.5rem; /* Add some vertical spacing between the links */
+}
+
 
 
 main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 70px);
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 70px);
+  position: relative;
 }
 
 
 :root {
-    --background: #EEE0CB;
-    --primary: #839788;
-    --secondary: #000000;
-    --tertiary: #BAA898;
-    --accent: #BFD7EA;
+  --background: #EEE0CB;
+  --primary: #839788;
+  --secondary: #000000;
+  --tertiary: #BAA898;
+  --accent: #BFD7EA;
 }
 
 body {
-    background-color: var(--background);
-    font-family: Arial, sans-serif;
-    color: var(--secondary);
-    margin: 0;
-  
+  background-color: var(--background);
+  font-family: Arial, sans-serif;
+  color: var(--secondary);
+  margin: 0;
+
 }
 
 header {
-    background-color: var(--primary);
-    padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background-color: var(--primary);
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 
 header h1 {
-    margin: 0;
-    color: #EEE0CB;
+  margin: 0;
+  color: #EEE0CB;
 }
 
 header nav {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .nav-link {
-    color: var(--secondary);
-    text-decoration: none;
+  color: var(--secondary);
+  text-decoration: none;
 }
 
 .nav-link:hover {
-    color: var(--accent);
+  color: var(--accent);
 }
 
 hamburger-icon {
-    display: inline-block;
-    width: 30px;
-    height: 20px;
-    position: relative;
-    cursor: pointer;
+  display: inline-block;
+  width: 30px;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
 }
 
 hamburger-icon span {
-    display: block;
-    width: 100%;
-    height: 3px;
-    background-color: var(--secondary);
-    position: absolute;
-    left: 0;
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: var(--secondary);
+  position: absolute;
+  left: 0;
 }
 
 hamburger-icon span:nth-child(1) {
-    top: 0;
+  top: 0;
 }
 
 hamburger-icon span:nth-child(2) {
-    top: 50%;
-    transform: translateY(-50%);
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 hamburger-icon span:nth-child(3) {
-    bottom: 0;
+  bottom: 0;
 }
 
 
 
 #home-title {
-    font-size: 7rem;
-    margin: 2rem;
-    position: absolute;
-    top: 50%;
-    transform: translateY(calc(-90% + 20px));
+  font-size: 7rem;
+  margin: 2rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(calc(-90% + 20px));
 }
 
 form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 input {
-    background-color: var(--tertiary);
-    border: none;
-    padding: 0.5rem;
-    color: var(--background);
+  background-color: var(--tertiary);
+  border: none;
+  padding: 0.5rem;
+  color: var(--background);
 }
 
 .btn {
-    width: 6.5em;
-    height: 2.3em;
-    margin: 0.5em;
-    background: black;
-    color: white;
-    border: none;
-    border-radius: 0.625em;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-   }
-   
-   button:hover {
-    color: black;
-   }
-   
-   button:after {
-    content: "";
-    background: white;
-    position: absolute;
-    z-index: -1;
-    left: -20%;
-    right: -20%;
-    top: 0;
-    bottom: 0;
-    transform: skewX(-45deg) scale(0, 1);
-    transition: all 0.5s;
-   }
-   
-   button:hover:after {
-    transform: skewX(-45deg) scale(1, 1);
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
-   }
+  width: 6.5em;
+  height: 2.3em;
+  margin: 0.5em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+ }
+ 
+ button:hover {
+  color: black;
+ }
+ 
+ button:after {
+  content: "";
+  background: white;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+ }
+ 
+ button:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+ }
 #book-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
 .book {
-    background-color: var(--tertiary);
-    padding: 1rem;
-    border-radius: 0.5rem;
+  background-color: var(--tertiary);
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 
 .book h3 {
-    margin-top: 0;
+  margin-top: 0;
 }
 
- 
+
 .typewriter h2 {
-    font-size: 7rem;
-    margin: 2rem;
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .15em solid orange; /* The typwriter cursor */
-    white-space: nowrap; /* Keeps the content on a single line */
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    letter-spacing: .15em; /* Adjust as needed */
-    animation: 
-      typing 3.5s steps(40, end),
-      blink-caret .75s step-end infinite;
-  }
-  
-  /* The typing effect */
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-  }
-  
-  /* The typewriter cursor effect */
-  @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: orange; }
-  }
-  .title-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Add this line to center the container vertically */
-    margin-top: 30px;
-    height: 100vh;
+  font-size: 7rem;
+  margin: 2rem;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
 }
 
-  
-  .title5 {
-    width: 318px;
-    height: 144px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 96px;
-    line-height: 150%;
-    color: #000000;
-    text-align: center; /* Add this line to center the text */
-    margin-left: 45%;
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
 }
 
-  
-  .title5 h1 {
-    font-size: 96px;
-    font-weight: 500;
-    line-height: 144px;
-    letter-spacing: -0.022em;
-    text-align: center;
-  }
-  
-  .title5 h1 {
-    font-size: 50px;
-    margin: 0;
-  }
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Add this line to center the container vertically */
+  margin-top: 30px;
+  height: 100vh;
+}
 
-  
-  #hamburger-menu {
-    background-color: var(--primary);
-    position: absolute;
-    top: calc(100% + 0.5rem); /* Position the menu just below the nav bar */
-    right: 0;
-    padding: 1rem;
-    border-radius: 0 0 0.5rem 0.5rem;
-    z-index: 100;
-    display: none; /* Hide the menu by default */
-  }
-  
-  nav.active #hamburger-menu {
-    display: block; /* Show the menu when the nav is active */
-  }
-  
-  nav {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    position: relative; /* Position the nav element relative to its container */
-  }
-  
-  .nav-link {
-    display: block; /* Set the links to display as block elements */
-    color: var(--secondary);
-    text-decoration: none;
-    margin-bottom: 0.5rem; /* Add some vertical spacing between the links */
-  }
-  
+
+.title5 {
+  width: 318px;
+  height: 144px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 96px;
+  line-height: 150%;
+  color: #000000;
+  text-align: center; /* Add this line to center the text */
+  margin-left: 45%;
+}
+
+
+.title5 h1 {
+  font-size: 96px;
+  font-weight: 500;
+  line-height: 144px;
+  letter-spacing: -0.022em;
+  text-align: center;
+}
+
+.title5 h1 {
+  font-size: 50px;
+  margin: 0;
+}
+
+
+#hamburger-menu {
+  background-color: var(--primary);
+  position: absolute;
+  top: calc(100% + 0.5rem); /* Position the menu just below the nav bar */
+  right: 0;
+  padding: 1rem;
+  border-radius: 0 0 0.5rem 0.5rem;
+  z-index: 100;
+  display: none; /* Hide the menu by default */
+}
+
+nav.active #hamburger-menu {
+  display: block; /* Show the menu when the nav is active */
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  position: relative; /* Position the nav element relative to its container */
+}
+
+.nav-link {
+  display: block; /* Set the links to display as block elements */
+  color: var(--secondary);
+  text-decoration: none;
+  margin-bottom: 0.5rem; /* Add some vertical spacing between the links */
+}
+
 
 
 
 
 #home-title {
-    font-size: 7rem;
-    margin: 2rem;
-    position: absolute;
-    top: 50%;
-    transform: translateY(calc(-90% + 20px));
+  font-size: 7rem;
+  margin: 2rem;
+  position: absolute;
+  top: 50%;
+  transform: translateY(calc(-90% + 20px));
 }
 
 form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    margin-bottom: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 
 input {
-    background-color: var(--tertiary);
-    border: none;
-    padding: 0.5rem;
-    color: var(--background);
+  background-color: var(--tertiary);
+  border: none;
+  padding: 0.5rem;
+  color: var(--background);
 }
 
 .btn {
-    width: 6.5em;
-    height: 2.3em;
-    margin: 0.5em;
-    background: black;
-    color: white;
-    border: none;
-    border-radius: 0.625em;
-    font-size: 20px;
-    font-weight: bold;
-    cursor: pointer;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-   }
-   
-   button:hover {
-    color: black;
-   }
-   
-   button:after {
-    content: "";
-    background: white;
-    position: absolute;
-    z-index: -1;
-    left: -20%;
-    right: -20%;
-    top: 0;
-    bottom: 0;
-    transform: skewX(-45deg) scale(0, 1);
-    transition: all 0.5s;
-   }
-   
-   button:hover:after {
-    transform: skewX(-45deg) scale(1, 1);
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
-   }
+  width: 6.5em;
+  height: 2.3em;
+  margin: 0.5em;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 0.625em;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+ }
+ 
+ button:hover {
+  color: black;
+ }
+ 
+ button:after {
+  content: "";
+  background: white;
+  position: absolute;
+  z-index: -1;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.5s;
+ }
+ 
+ button:hover:after {
+  transform: skewX(-45deg) scale(1, 1);
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+ }
 #book-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
 }
 
 .book {
-    background-color: var(--tertiary);
-    padding: 1rem;
-    border-radius: 0.5rem;
+  background-color: var(--tertiary);
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 
 .book h3 {
-    margin-top: 0;
+  margin-top: 0;
 }
 
- 
+
 .typewriter h2 {
-    font-size: 7rem;
-    margin: 2rem;
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: .15em solid orange; /* The typwriter cursor */
-    white-space: nowrap; /* Keeps the content on a single line */
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    letter-spacing: 1px; /* Adjust as needed */
-    animation: 
-      typing 3.5s steps(40, end),
-      blink-caret .75s step-end infinite;
-  }
-  
-  /* The typing effect */
-  @keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-  }
-  
-  /* The typewriter cursor effect */
-  @keyframes blink-caret {
-    from, to { border-color: transparent }
-    50% { border-color: orange; }
-  }
-  .title-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; /* Add this line to center the container vertically */
-    margin-top: 30px;
-    height: 100vh;
+  font-size: 7rem;
+  margin: 2rem;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: 1px; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(40, end),
+    blink-caret .75s step-end infinite;
 }
 
-  
-  .title5 {
-    width: 318px;
-    height: 144px;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 96px;
-    line-height: 150%;
-    color: #000000;
-    text-align: center; /* Add this line to center the text */
-    margin-left: 42%;
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
 }
 
-  
-  .title5 h1 {
-    font-size: 96px;
-    font-weight: 500;
-    line-height: 144px;
-    letter-spacing: -0.022em;
-    text-align: center;
-  }
-  
-  .search-bar {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    margin-top: 20px; /* Add some margin to separate the title and search bar */
-  }
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange; }
+}
+.title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Add this line to center the container vertically */
+  margin-top: 30px;
+  height: 100vh;
+}
+
+
+.title5 {
+  width: 318px;
+  height: 144px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 96px;
+  line-height: 150%;
+  color: #000000;
+  text-align: center; /* Add this line to center the text */
+  margin-left: 42%;
+}
+
+
+.title5 h1 {
+  font-size: 96px;
+  font-weight: 500;
+  line-height: 144px;
+  letter-spacing: -0.022em;
+  text-align: center;
+}
+
+.search-bar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px; /* Add some margin to separate the title and search bar */
+}
 
 .search-bar input[type="text"] {
-    background-color: #FFFFFF;
-    width: 300%;
-    width: 1000px;
-    padding: 10px;
-    border: none;
-    outline: none;
+  background-color: #FFFFFF;
+  width: 300%;
+  width: 1000px;
+  padding: 10px;
+  border: none;
+  outline: none;
 }
 .search-bar button {
-    background-color: #fff;
-    border: none;
-    border-radius: 20px;
-    width: 40px;
-    height: 40px;
-    position: absolute; 
-    right: 0px; 
-    margin-right: 45%;
-    
-    }
-    
-    .search-bar button:before {
-    content: "\1F50E";
-    font-size: 20px;
-    color: #555;
-    line-height: 40px;
-    text-align: center;
-    display: block;
-    
-    }
-
+  background-color: #fff;
+  border: none;
+  border-radius: 20px;
+  width: 40px;
+  height: 40px;
+  position: absolute; 
+  right: 0px; 
+  margin-right: 45%;
+  
+  }
+  
+  .search-bar button:before {
+  content: "\1F50E";
+  font-size: 20px;
+  color: #555;
+  line-height: 40px;
+  text-align: center;
+  display: block;
+  
+  }

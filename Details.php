@@ -14,22 +14,26 @@
 
 <body>
 <header>
-        <h1>Bookly</h1>
+  <button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
+    <div class="logo">
+      <h1>Bookly</h1>
+    </div>
+  </button>
+  <nav>
+    <button class="btn" onclick="location.href='login.php'">Login</button>
+    <hamburger-icon>
+      <span></span>
+      <span></span>
+      <span></span>
+    </hamburger-icon>
+    <div id="hamburger-menu" class="hidden">
+      <a href="admin.html" class="nav-link">Admin Panel</a>
+      <a href="bookoverview.php" class="nav-link">Book Overview</a>
+      <a href="register.html" class="nav-link">Register</a>
+    </div>
+  </nav>
+</header>
 
-       <nav>
-       <button class="btn" onclick="location.href='login.php'">Login</button>
-        <hamburger-icon>
-            <span></span>
-            <span></span>
-            <span></span>
-        </hamburger-icon>
-        <div id="hamburger-menu" class="hidden">
-            <a href="admin.html" class="nav-link">Admin Panel</a>
-            <a href="bookoverview.php" class="nav-link">Book Overview</a>
-            <a href="register.html" class="nav-link">Register</a>
-        </div>
-    </nav>
-    </header>
    
       <div>
   <h1 class="title5">Bookly</h1>
@@ -80,7 +84,8 @@ if(isset($_POST['search_btn'])) {
                   katalog LIKE '%$search_query%' OR 
                   kurztitle LIKE '%$search_query%' OR 
                   autor LIKE '%$search_query%' OR 
-                  genre LIKE '%$search_query%'";
+                  genre LIKE '%$search_query%' OR 
+                  title LIKE '%$search_query%'";
                   
     $result_books = $conn->query($sql_books);
 
@@ -114,15 +119,10 @@ if(isset($_POST['search_btn'])) {
 
     $result_books = $conn->query($sql_books);
 }
-#fuck
-?>    
+?>
         </div>
     </div>
 
-    <?php
-        // Include the footer
-        include('footer.php');
-    ?>
       <script>const hamburger = document.querySelector('hamburger-icon');
         const nav = document.querySelector('header nav');
         
