@@ -123,7 +123,7 @@ if(isset($_POST['search_btn'])) {
         </div>
     </div>
 
-      <script>const hamburger = document.querySelector('hamburger-icon');
+      <script>  const hamburger = document.querySelector('hamburger-icon');
         const nav = document.querySelector('header nav');
         
         hamburger.addEventListener('click', function() {

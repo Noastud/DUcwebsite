@@ -6,7 +6,7 @@
     <title>Book Archive</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        /* Add this to your styles.css file */
+     
         .modal {
             display: none;
             position: fixed;

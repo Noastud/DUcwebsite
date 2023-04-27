@@ -46,9 +46,7 @@ $conn = mysqli_connect("localhost", "root", "", "books");
 // Check the connection
 if (!$conn) {
     die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
-} else {
-    echo "Verbindung erfolgreich";
-}
+} 
 
 if (isset($_GET['id'])) {
     // Get the book ID from the GET variable
@@ -92,9 +90,9 @@ mysqli_close($conn);
 
 
     <script>
-        const hamburger = document.querySelector('.hamburger-icon');
+     const hamburger = document.querySelector('hamburger-icon');
         const nav = document.querySelector('header nav');
-
+        
         hamburger.addEventListener('click', function() {
             nav.classList.toggle('active');
         });

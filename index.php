@@ -34,7 +34,8 @@
             <h2>Bookly: Browse Antique Books.</h2>
           </div>
     </main>
-    <script>const hamburger = document.querySelector('hamburger-icon');
+    <script>
+    const hamburger = document.querySelector('hamburger-icon');
         const nav = document.querySelector('header nav');
         
         hamburger.addEventListener('click', function() {
