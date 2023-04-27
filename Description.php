@@ -11,28 +11,19 @@
         <div class="logo">
             <h1>Book Archive</h1>
         </div>
-
         <nav>
-        <form method="post" action="description.php">
-
-                <input type="text" name="q" placeholder="Search for a book">
-                <button type="submit">Search</button>
-            </form>
-
-            <button class="btn login-btn">Login</button>
-
-            <div class="hamburger-icon">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-
-            <div id="hamburger-menu" class="hidden">
-                <a href="admin.html" class="nav-link">Admin Panel</a>
-                <a href="bookoverview.php" class="nav-link">Book Overview</a>
-                <a href="register.html" class="nav-link">Register</a>
-            </div>
-        </nav>
+            <button class="btn" ><a href="login.php"> Login</a></button>
+        <hamburger-icon>
+            <span></span>
+            <span></span>
+            <span></span>
+        </hamburger-icon>
+        <div id="hamburger-menu" class="hidden">
+            <a href="admin.html" class="nav-link">Admin Panel</a>
+            <a href="bookoverview.php" class="nav-link">Book Overview</a>
+            <a href="register.html" class="nav-link">Register</a>
+        </div>
+    </nav>
     </header>
 
     <?php
@@ -86,7 +77,7 @@ echo json_encode($search_results);
         hamburger.addEventListener('click', function() {
             nav.classList.toggle('active');
         });
-        <script>
+      
     const searchInput = document.querySelector('.search-bar input[type="text"]');
     const popup = document.querySelector('.popup');
     const popupList = popup.querySelector('ul');
@@ -120,6 +111,5 @@ echo json_encode($search_results);
     });
 </script>
 
-    </script>
 </body>
 </html>

@@ -112,18 +112,18 @@
     <header>
         <h1>Book Archive</h1>
         <nav>
-            <button class="btn">Login</button>
-            <hamburger-icon>
-                <span></span>
-                <span></span>
-                <span></span>
-            </hamburger-icon>
-            <div id="hamburger-menu" class="hidden">
-                <a href="admin.html" class="nav-link">Admin Panel</a>
-                <a href="Search.html" class="nav-link">Search</a>
-                <a href="register.html" class="nav-link">Register</a>
-            </div>
-        </nav>
+            <button class="btn" ><a href="login.php"> Login</a></button>
+        <hamburger-icon>
+            <span></span>
+            <span></span>
+            <span></span>
+        </hamburger-icon>
+        <div id="hamburger-menu" class="hidden">
+            <a href="admin.html" class="nav-link">Admin Panel</a>
+            <a href="bookoverview.php" class="nav-link">Book Overview</a>
+            <a href="register.html" class="nav-link">Register</a>
+        </div>
+    </nav>
     </header>
 
     <div class="main-content">
