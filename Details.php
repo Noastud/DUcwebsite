@@ -8,16 +8,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Book Archive</title>
+    <title>Bookly</title>
     <link rel="stylesheet" href="styles.css?v=2">
 </head>
 
 <body>
 <header>
-        <h1>Book Archive</h1>
+        <h1>Bookly</h1>
 
        <nav>
-            <button class="btn" ><a href="login.php"> Login</a></button>
+       <button class="btn" onclick="location.href='login.php'">Login</button>
         <hamburger-icon>
             <span></span>
             <span></span>

@@ -4,68 +4,85 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Archive</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
     <header>
         <div class="logo">
-            <h1>Book Archive</h1>
+            <h1>Bookly</h1>
         </div>
         <nav>
-            <button class="btn" ><a href="login.php"> Login</a></button>
-        <hamburger-icon>
-            <span></span>
-            <span></span>
-            <span></span>
-        </hamburger-icon>
-        <div id="hamburger-menu" class="hidden">
-            <a href="admin.html" class="nav-link">Admin Panel</a>
-            <a href="bookoverview.php" class="nav-link">Book Overview</a>
-            <a href="register.html" class="nav-link">Register</a>
-        </div>
-    </nav>
+        <button class="btn" onclick="location.href='login.php'">Login</button>
+            <hamburger-icon>
+                <span></span>
+                <span></span>
+                <span></span>
+            </hamburger-icon>
+            <div id="hamburger-menu" class="hidden">
+                <a href="admin.html" class="nav-link">Admin Panel</a>
+                <a href="bookoverview.php" class="nav-link">Book Overview</a>
+                <a href="register.html" class="nav-link">Register</a>
+            </div>
+        </nav>
     </header>
+    <div class="search-bar">
+    <form method="GET">
+        <input type="text" name="book_title" placeholder="Search Books">
+        <button type="submit">Search</button>
+    </form>
+</div>
 
-    <?php
+<?php
 // Start the session
 session_start();
 
-// Stelle die Verbindung zur Datenbank her
+// Establish the database connection
 $conn = mysqli_connect("localhost", "root", "", "books");
 
-// Überprüfe die Verbindung
+// Check the connection
 if (!$conn) {
     die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
+} else {
+    echo "Verbindung erfolgreich";
 }
 
-// Hole den Suchbegriff aus der GET-Variable
-$search_query = mysqli_real_escape_string($conn, $_GET['search_query']);
+if (isset($_GET['id'])) {
+    // Get the book ID from the GET variable
+    $book_id = mysqli_real_escape_string($conn, $_GET['id']);
 
-// Erstelle die SQL-Abfrage mit den gewünschten Suchkriterien
-$sql_books = "SELECT Full_texts.*, kategorien.* 
-              FROM Full_texts 
-              INNER JOIN kategorien ON Full_texts.kategorie = kategorien.id
-              WHERE 
-              katalog LIKE '%$search_query%' OR 
-              kurztitle LIKE '%$search_query%' OR 
-              autor LIKE '%$search_query%' OR 
-              title LIKE '%$search_query%' OR 
-              verfasser LIKE '%$search_query%' OR 
-              sprache LIKE '%$search_query%' OR 
-              zustand LIKE '%$search_query%'";
+    // Create the SQL query to retrieve the book details
+    $sql_book_details = "SELECT * 
+                         FROM buecher 
+                         WHERE id = '$book_id'";
 
+    $result_book_details = $conn->query($sql_book_details);
 
-$result_books = $conn->query($sql_books);
+    // Check if the book is found
+    if ($result_book_details) {
+        if (mysqli_num_rows($result_book_details) > 0) {
+            // Retrieve book details from the database
+            $book_details = $result_book_details->fetch_assoc();
 
-$search_results = array();
-while ($row = $result_books->fetch_assoc()) {
-    $search_results[] = $row['katalog'];
-    $search_results[] = $row['kurztitle'];
-    $search_results[] = $row['autor'];
-    $search_results[] = $row['genre'];
+            // Display book details
+            echo "<h2>" . $book_details['title'] . "</h2>";
+            echo "<p><strong>Autor:</strong> " . $book_details['autor'] . "</p>";
+            echo "<p><strong>Verfasser:</strong> " . $book_details['verfasser'] . "</p>";
+            echo "<p><strong>Erscheinungsjahr:</strong> " . $book_details['erscheinungsjahr'] . "</p>";
+            echo "<p><strong>Sprache:</strong> " . $book_details['sprache'] . "</p>";
+            echo "<p><strong>Zustand:</strong> " . $book_details['zustand'] . "</p>";
+            echo "<p><strong>Inhalt:</strong></p>";
+            echo "<p>" . $book_details['text'] . "</p>";
+        } else {
+            echo "Das Buch konnte nicht gefunden werden.";
+        }
+    } else {
+        echo "Fehler beim Ausführen der Abfrage: " . mysqli_error($conn);
+    }
 }
 
-echo json_encode($search_results);
+// Close the database connection
+mysqli_close($conn);
+
 ?>
 
 
@@ -78,37 +95,39 @@ echo json_encode($search_results);
             nav.classList.toggle('active');
         });
       
-    const searchInput = document.querySelector('.search-bar input[type="text"]');
-    const popup = document.querySelector('.popup');
-    const popupList = popup.querySelector('ul');
+        const searchInput = document.querySelector('.search-bar input[type="text"]');
+const popup = document.querySelector('.popup');
+const popupList = popup.querySelector('ul');
 
-    searchInput.addEventListener('input', function() {
-        const inputValue = this.value.trim();
-        if (inputValue === '') {
-            popup.style.display = 'none';
-        } else {
-            fetch('search.php?search_query=' + inputValue)
-                .then(response => response.json())
-                .then(data => {
-                    popupList.innerHTML = '';
-                    data.forEach(result => {
-                        const li = document.createElement('li');
-                        li.textContent = result;
-                        popupList.appendChild(li);
-                    });
-                    popup.style.display = 'block';
-                })
-                .catch(error => {
-                    console.error(error);
+searchInput.addEventListener('input', function() {
+    const inputValue = this.value.trim();
+    if (inputValue === '') {
+        popup.style.display = 'none';
+    } else {
+        fetch('search.php?search_query=' + inputValue)
+            .then(response => response.json())
+            .then(data => {
+                popupList.innerHTML = '';
+                data.forEach(result => {
+                    const li = document.createElement('li');
+                    li.textContent = result.title + ' by ' + result.author;
+                    popupList.appendChild(li);
                 });
-        }
-    });
+                popup.style.display = 'block';
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+});
 
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.search-bar')) {
-            popup.style.display = 'none';
-        }
-    });
+document.addEventListener('click', function(event) {
+    if (!event.target.closest('.search-bar')) {
+        popup.style.display = 'none';
+    }
+});
+
+
 </script>
 
 </body>

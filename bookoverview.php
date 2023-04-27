@@ -110,9 +110,9 @@
 </head>
 <body>
     <header>
-        <h1>Book Archive</h1>
+        <h1>Bookly</h1>
         <nav>
-            <button class="btn" ><a href="login.php"> Login</a></button>
+        <button class="btn" onclick="location.href='login.php'">Login</button>
         <hamburger-icon>
             <span></span>
             <span></span>
@@ -125,7 +125,7 @@
         </div>
     </nav>
     </header>
-
+    
     <div class="main-content">
         <div class="book-container">
         <?php

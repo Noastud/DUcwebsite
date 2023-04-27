@@ -1,15 +1,4 @@
-.title5 {
-    text-align: center;
-    margin-top: 30px;
-  }
-  
-  .title5 h1 {
-    font-size: 50px;
-    margin: 0;
-  }
-.hidden {
-    display: none;
-  }
+
   
   #hamburger-menu {
     background-color: var(--primary);
@@ -79,7 +68,7 @@ header {
 
 header h1 {
     margin: 0;
-    color: var(--secondary);
+    color: #EEE0CB;
 }
 
 header nav {
@@ -127,10 +116,6 @@ hamburger-icon span:nth-child(3) {
     bottom: 0;
 }
 
-main {
-
-    text-align: center;
-}
 
 
 #home-title {
@@ -234,91 +219,244 @@ input {
     from, to { border-color: transparent }
     50% { border-color: orange; }
   }
-
-
-  .title5 {
-    text-align: center;
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Add this line to center the container vertically */
     margin-top: 30px;
+    height: 100vh;
+}
+
+  
+  .title5 {
+    width: 318px;
+    height: 144px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 96px;
+    line-height: 150%;
+    color: #000000;
+    text-align: center; /* Add this line to center the text */
+    margin-left: 45%;
+}
+
+  
+  .title5 h1 {
+    font-size: 96px;
+    font-weight: 500;
+    line-height: 144px;
+    letter-spacing: -0.022em;
+    text-align: center;
   }
   
   .title5 h1 {
-
-font-size: 96px;
-font-weight: 500;
-line-height: 144px;
-letter-spacing: -0.022em;
-text-align: center;
-
+    font-size: 50px;
+    margin: 0;
   }
 
+  
+  #hamburger-menu {
+    background-color: var(--primary);
+    position: absolute;
+    top: calc(100% + 0.5rem); /* Position the menu just below the nav bar */
+    right: 0;
+    padding: 1rem;
+    border-radius: 0 0 0.5rem 0.5rem;
+    z-index: 100;
+    display: none; /* Hide the menu by default */
+  }
+  
+  nav.active #hamburger-menu {
+    display: block; /* Show the menu when the nav is active */
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: relative; /* Position the nav element relative to its container */
+  }
+  
+  .nav-link {
+    display: block; /* Set the links to display as block elements */
+    color: var(--secondary);
+    text-decoration: none;
+    margin-bottom: 0.5rem; /* Add some vertical spacing between the links */
+  }
+  
+
+
+
+
+#home-title {
+    font-size: 7rem;
+    margin: 2rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(calc(-90% + 20px));
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+input {
+    background-color: var(--tertiary);
+    border: none;
+    padding: 0.5rem;
+    color: var(--background);
+}
+
+.btn {
+    width: 6.5em;
+    height: 2.3em;
+    margin: 0.5em;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 0.625em;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+   }
+   
+   button:hover {
+    color: black;
+   }
+   
+   button:after {
+    content: "";
+    background: white;
+    position: absolute;
+    z-index: -1;
+    left: -20%;
+    right: -20%;
+    top: 0;
+    bottom: 0;
+    transform: skewX(-45deg) scale(0, 1);
+    transition: all 0.5s;
+   }
+   
+   button:hover:after {
+    transform: skewX(-45deg) scale(1, 1);
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+   }
+#book-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.book {
+    background-color: var(--tertiary);
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.book h3 {
+    margin-top: 0;
+}
+
+ 
+.typewriter h2 {
+    font-size: 7rem;
+    margin: 2rem;
+    overflow: hidden; /* Ensures the content is not revealed until the animation */
+    border-right: .15em solid orange; /* The typwriter cursor */
+    white-space: nowrap; /* Keeps the content on a single line */
+    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    letter-spacing: 1px; /* Adjust as needed */
+    animation: 
+      typing 3.5s steps(40, end),
+      blink-caret .75s step-end infinite;
+  }
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange; }
+  }
+  .title-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Add this line to center the container vertically */
+    margin-top: 30px;
+    height: 100vh;
+}
+
+  
+  .title5 {
+    width: 318px;
+    height: 144px;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 96px;
+    line-height: 150%;
+    color: #000000;
+    text-align: center; /* Add this line to center the text */
+    margin-left: 42%;
+}
+
+  
+  .title5 h1 {
+    font-size: 96px;
+    font-weight: 500;
+    line-height: 144px;
+    letter-spacing: -0.022em;
+    text-align: center;
+  }
+  
   .search-bar {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-}
+    margin-top: 20px; /* Add some margin to separate the title and search bar */
+  }
 
 .search-bar input[type="text"] {
     background-color: #FFFFFF;
-    width: 250%;
-    border-radius: 25px;
+    width: 300%;
+    width: 1000px;
     padding: 10px;
     border: none;
     outline: none;
 }
-
-
-.popup {
-    position: absolute;
-    top: 55px;
-    left: 0;
-    width: 100%;
-    max-height: 200px;
-    overflow-y: scroll;
-    background-color: #FFFFFF;
-    border: 1px solid #E5E5E5;
-    border-radius: 8px;
-    z-index: 1;
-    display: none;
-}
-/*
-.popup ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.popup ul li {
-    padding: 8px;
-    font-size: 18px;
-    color: #1F2041;
-    cursor: pointer;
-}
-
-.popup ul li:hover {
-    background-color: #F5F5F5;
-}
-
 .search-bar button {
-background-color: #fff;
-border: none;
-border-radius: 20px;
-width: 40px;
-height: 40px;
-position: absolute; 
-right: 0px; 
-margin-right: 45%;
+    background-color: #fff;
+    border: none;
+    border-radius: 20px;
+    width: 40px;
+    height: 40px;
+    position: absolute; 
+    right: 0px; 
+    margin-right: 45%;
+    
+    }
+    
+    .search-bar button:before {
+    content: "\1F50E";
+    font-size: 20px;
+    color: #555;
+    line-height: 40px;
+    text-align: center;
+    display: block;
+    
+    }
 
-}
-
-.search-bar button:before {
-content: "\1F50E";
-font-size: 20px;
-color: #555;
-line-height: 40px;
-text-align: center;
-display: block;
-
-}
-*/
