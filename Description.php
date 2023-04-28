@@ -29,13 +29,6 @@
 </header>
 
 
-    <div class="search-bar">
-    <form method="GET">
-        <input type="text" name="book_title" placeholder="Search Books">
-        <button type="submit">Search</button>
-    </form>
-</div>
-
 <?php
 // Start the session
 session_start();
