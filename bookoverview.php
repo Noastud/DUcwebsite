@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css?v=2">
-
+    <link rel="stylesheet" href="style/styles.css?v=2">
 </head>
 <body class="book-page">
-
 <header>
   <button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
     <div class="logo">
@@ -105,5 +103,9 @@ const hamburger = document.querySelector('hamburger-icon');
         });
 
         </script>
+        <nav class="nav2">
+  <a class="nav-link" href="#">Books</a>
+</nav>
+
 </body>
 </html>
