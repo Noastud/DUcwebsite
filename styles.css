@@ -173,23 +173,10 @@ nav {
   font-weight: 500;
   font-size: 96px;
   line-height: 150%;
-  color: #000000;
+  color: #ffffff;
   text-align: center; /* Add this line to center the text */
-  margin-left: 45%;
-}
-
-
-.title5 h1 {
-  font-size: 96px;
-  font-weight: 500;
-  line-height: 144px;
-  letter-spacing: -0.022em;
-  text-align: center;
-}
-
-.title5 h1 {
-  font-size: 50px;
-  margin: 0;
+  margin: auto; /* Add this line to center the element horizontally */
+  position: relative;
 }
 
 
@@ -310,26 +297,8 @@ button:not(.search-bar button):hover:after {
 }
 
 
-.title5 {
-  width: 318px;
-  height: 144px;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 96px;
-  line-height: 150%;
-  color: #000000;
-  text-align: center; /* Add this line to center the text */
-  margin-left: 42%;
-}
 
 
-.title5 h1 {
-  font-size: 96px;
-  font-weight: 500;
-  line-height: 144px;
-  letter-spacing: -0.022em;
-  text-align: center;
-}
 
 .search-bar {
   position: relative;

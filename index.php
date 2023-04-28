@@ -24,7 +24,7 @@
     <div id="hamburger-menu" class="hidden">
       <a href="admin.html" class="nav-link">Admin Panel</a>
       <a href="bookoverview.php" class="nav-link">Book Overview</a>
-      <a href="register.html" class="nav-link">Register</a>
+      <a href="details.php" class="nav-link">Search</a>
     </div>
   </nav>
 </header>
