@@ -115,67 +115,6 @@ nav {
 }
 
 
-
-#home-title {
-  font-size: 7rem;
-  margin: 2rem;
-  position: absolute;
-  top: 50%;
-  transform: translateY(calc(-90% + 20px));
-}
-
-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-
-input {
-  background-color: var(--tertiary);
-  border: none;
-  padding: 0.5rem;
-  color: var(--background);
-}
-
-.btn {
-  width: 6.5em;
-  height: 2.3em;
-  margin: 0.5em;
-  background: black;
-  color: white;
-  border: none;
-  border-radius: 0.625em;
-  font-size: 20px;
-  font-weight: bold;
-  cursor: pointer;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
- }
- 
- button:hover {
-  color: black;
- }
- 
- button:after {
-  content: "";
-  background: white;
-  position: absolute;
-  z-index: -1;
-  left: -20%;
-  right: -20%;
-  top: 0;
-  bottom: 0;
-  transform: skewX(-45deg) scale(0, 1);
-  transition: all 0.5s;
- }
- 
- button:hover:after {
-  transform: skewX(-45deg) scale(1, 1);
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
- }
 #book-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -296,11 +235,12 @@ input {
   overflow: hidden;
  }
  
- button:hover {
+/* Apply button styles to all buttons except those within .search-bar */
+button:not(.search-bar button):hover {
   color: black;
- }
- 
- button:after {
+}
+
+button:not(.search-bar button):after {
   content: "";
   background: white;
   position: absolute;
@@ -311,13 +251,14 @@ input {
   bottom: 0;
   transform: skewX(-45deg) scale(0, 1);
   transition: all 0.5s;
- }
- 
- button:hover:after {
+}
+
+button:not(.search-bar button):hover:after {
   transform: skewX(-45deg) scale(1, 1);
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
- }
+}
+
 #book-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -401,21 +342,20 @@ input {
 
 .search-bar input[type="text"] {
   background-color: #FFFFFF;
-  width: 300%;
   width: 1000px;
   padding: 10px;
   border: none;
   outline: none;
 }
-.search-bar button {
+ .search-bar button {
   background-color: #fff;
   border: none;
-  border-radius: 20px;
+  
   width: 40px;
-  height: 40px;
+  height: 34px;
   position: absolute; 
   right: 0px; 
-  margin-right: 45%;
+  margin-right: 20%;
   
   }
   
@@ -428,6 +368,8 @@ input {
   display: block;
   
   }
+  
+
 
 
   .book-page body {
