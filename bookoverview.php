@@ -28,7 +28,14 @@
     </div>
   </nav>
 </header>
-
+  <?php 
+  // erstellt eine variable die das sort formular auswertet und die datenbank nach den ausgewählten kriterien sortiert
+$sort = isset($_GET['sort']) ? $_GET['sort'] : 'default';
+$sort_options = array('default', 'kurztitle', 'autor', 'zustand');
+if (!in_array($sort, $sort_options)) {
+    $sort = 'default';
+}
+?>
     <div>
   <form>
     <label for="sort">Sort by:</label>
@@ -57,12 +64,7 @@ $conn = mysqli_connect($servername, $username, $password, $dbname);
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-// erstellt eine variable die das sort formular auswertet und die datenbank nach den ausgewählten kriterien sortiert
-$sort = isset($_GET['sort']) ? $_GET['sort'] : 'default';
-$sort_options = array('default', 'kurztitle', 'autor', 'zustand');
-if (!in_array($sort, $sort_options)) {
-    $sort = 'default';
-}
+
 //erstellt eine default ansicht der datenbank
 if ($sort == 'default') {
     $sql = "SELECT id, kurztitle, autor, sprache, zustand FROM buecher";
@@ -73,26 +75,25 @@ if ($sort == 'default') {
 $result = mysqli_query($conn, $sql);
 //mysqli_num_rows zählt die anzahl der zeilen in der datenbank
 if (mysqli_num_rows($result) > 0) {
-    echo '<div class="book-container">';¨
-    //mysqli_fetch_assoc gibt die datenbank in einem assoziativen array aus
-
-    while($row = mysqli_fetch_assoc($result)) {
-        $random_cover = "https://picsum.photos/300/450?random=" . $row['id'];
-        echo '<div class="book">';
-        echo '<div class="book-info">';
-        echo '<h3 class="book-title">' . $row['kurztitle'] . '</h3>';
-        echo '<p class="book-author"><strong>Author:</strong> ' . $row['autor'] . '</p>';
-        echo '<p class="book-category"><strong>Category:</strong> ' . $row['zustand'] . '</p>';
-        echo '<p class="book-language"><strong>Language:</strong> ' . $row['sprache'] . '</p>';
-        echo '<a href="Description.php?id=' . $row['id'] . '" class="btn" style="text-decoration: none;">More Details</a>';
-        echo '</div>';
-        echo '<div class="book-image" style="background-image: url(' . $random_cover . ')"></div>';
-        echo '</div>';
-    }
-    echo '</div>';
+  echo '<div class="book-container">';
+  while($row = mysqli_fetch_assoc($result)) {
+      $random_cover = "https://picsum.photos/300/450?random=" . $row['id'];
+      echo '<div class="book">';
+      echo '<div class="book-info">';
+      echo '<h3 class="book-title">' . $row['kurztitle'] . '</h3>';
+      echo '<p class="book-author"><strong>Author:</strong> ' . $row['autor'] . '</p>';
+      echo '<p class="book-category"><strong>Category:</strong> ' . $row['zustand'] . '</p>';
+      echo '<p class="book-language"><strong>Language:</strong> ' . $row['sprache'] . '</p>';
+      echo '<a href="Description.php?id=' . $row['id'] . '" class="btn" style="text-decoration: none;">More Details</a>';
+      echo '</div>';
+      echo '<div class="book-image" style="background-image: url(' . $random_cover . ')"></div>';
+      echo '</div>';
+  }
+  echo '</div>';
 } else {
-    echo "0 results";
+  echo "0 results";
 }
+
 //schließt die verbindung zur datenbank
 mysqli_close($conn);
 ?>
