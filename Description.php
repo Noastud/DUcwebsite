@@ -6,7 +6,7 @@
     <title>Book Archive</title>
     <link rel="stylesheet" href="style/styles.css?v=2">
 </head>
-<body>
+<body class="difback">
 <header>
     <!--code für weiterleitung an index.php dient als logo für schnellen zugriff auf hauptseite-->
   <button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
@@ -65,10 +65,11 @@ if (isset($_GET['id'])) {
           $random_cover = "https://picsum.photos/300/450?random=" . $book_details['id'];
           
           echo '<div class="book-details">';
-          echo '<div class="book-details-text-container">';
-          
+        
           echo "<h2>" . $book_details['kurztitle'] . "</h2>";
           echo "<p><strong>Titel:</strong> " . $book_details['title'] . "</p>";
+          
+          echo '<div class="book-details-text-container">';
           echo "<p><strong>Autor:</strong> " . $book_details['autor'] . "</p>";
           echo "<p><strong>Verfasser:</strong> " . $book_details['verfasser'] . "</p>";
           echo "<p><strong>Sprache:</strong> " . $book_details['sprache'] . "</p>";
