@@ -60,33 +60,34 @@ if (isset($_GET['id'])) {
 
     // Check ob die abfrage funktioniert hat
     if ($result_book_details) {
-        if (mysqli_num_rows($result_book_details) > 0) {
-            // hohlt 
-            $book_details = $result_book_details->fetch_assoc();
-            //zeigt bücher details und erstelle eine zufälliges cover
-            $random_cover = "https://picsum.photos/300/450?random=" . $book_details['id'];
-            echo '<div class="book-details">';
-            echo '<div class="book-details-text-container">';
-            echo "<h2>" . $book_details['kurztitle'] . "</h2>";
-            echo "<p ><strong>Titel:</strong> " . $book_details['title'] . "</p>";
-            echo "<p ><strong>Autor:</strong> " . $book_details['autor'] . "</p>";
-            echo "<p ><strong>Verfasser:</strong> " . $book_details['verfasser'] . "</p>";
-            echo "<p ><strong>Sprache:</strong> " . $book_details['sprache'] . "</p>";
-            echo "<p ><strong>Zustand:</strong> " . $book_details['zustand'] . "</p>";
-            // Check ob es eine beschreibung gibt sonst wird es nicht angezeigt
-        if (isset($book_details['text'])) {
-            echo '<p><strong>Inhalt:</strong></p>';
-            echo '<p>' . $book_details['text'] . '</p>';
-}
-            echo '</div>';
-            echo '<div class="book-details-image" style="background-image: url(' . $random_cover . ')"></div>';
-            echo '</div>';
-        } else {
-            echo "Das Buch konnte nicht gefunden werden.";
-        }
-    } else {
-        echo "Fehler beim Ausführen der Abfrage: " . mysqli_error($conn);
-    }
+      if (mysqli_num_rows($result_book_details) > 0) {
+          $book_details = $result_book_details->fetch_assoc();
+          $random_cover = "https://picsum.photos/300/450?random=" . $book_details['id'];
+          
+          echo '<div class="book-details">';
+          echo '<div class="book-details-image" style="background-image: url(' . $random_cover . ')"></div>';
+          echo '<div class="book-details-text-container">';
+          
+          echo "<h2>" . $book_details['kurztitle'] . "</h2>";
+          echo "<p><strong>Titel:</strong> " . $book_details['title'] . "</p>";
+          echo "<p><strong>Autor:</strong> " . $book_details['autor'] . "</p>";
+          echo "<p><strong>Verfasser:</strong> " . $book_details['verfasser'] . "</p>";
+          echo "<p><strong>Sprache:</strong> " . $book_details['sprache'] . "</p>";
+          echo "<p><strong>Zustand:</strong> " . $book_details['zustand'] . "</p>";
+          
+          if (isset($book_details['text'])) {
+              echo '<p><strong>Inhalt:</strong></p>';
+              echo '<p>' . $book_details['text'] . '</p>';
+          }
+          
+          echo '</div>';
+          echo '</div>';
+      } else {
+          echo "Das Buch konnte nicht gefunden werden.";
+      }
+  } else {
+      echo "Fehler beim Ausführen der Abfrage: " . mysqli_error($conn);
+  }
 }
 // schluss der verbindung
 mysqli_close($conn);
