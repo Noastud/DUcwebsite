@@ -3,45 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css?v=2">
+    <link rel="stylesheet" href="styles.css">
+<style>
+    body {
+      background-color: #EEE0CB;
+      font-family: Arial, sans-serif;
+      color: #000;
+      margin: 0;
+    }
 
+    .book-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* center the book containers horizontally */
+      max-width: 1200px;
+      margin: 0 auto; /* center the book container vertically */
+    }
+
+    .book {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      position: relative;
+      width: calc(33.33% - 2rem);
+      height: 360px;
+      background-color: #fff;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease-in-out;
+      overflow: hidden;
+      background-color: transparent;
+    }
+
+    .book:hover {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+      transform: translateY(-10px);
+    }
+
+    .book-image {
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      width: 60%;
+      height: 100%;
+      object-fit: cover; /* maintain aspect ratio of book cover image */
+    }
+
+    .book-info {
+      position: relative;
+      width: 40%;
+      height: 100%;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      background-color: transparent;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .book:hover .book-info {
+      transform: translateX(5%);
+    }
+
+    .book-title {
+      font-size: 1.5rem;
+      margin: 0.5rem 0;
+    }
+
+    .book-author {
+      font-size: 1rem;
+      margin: 0.25rem 0;
+    }
+
+    .book-category {
+      font-size: 1rem;
+      margin: 0.25rem 0;
+    }
+
+    .book-language {
+      font-size: 1rem;
+      margin: 0.25rem 0;
+    }
+
+    .book-condition {
+      font-size: 1rem;
+      margin: 0.25rem 0;
+    }
+
+    .btn {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #fff;
+      color: #000;
+    }
+
+
+    </style>
 </head>
-<body class="book-page">
-
-<header>
-  <button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
-    <div class="logo">
-      <h1>Bookly</h1>
-    </div>
-  </button>
-  <nav>
-    <button class="btn" onclick="location.href='login.php'">Login</button>
-    <hamburger-icon>
-      <span></span>
-      <span></span>
-      <span></span>
-    </hamburger-icon>
-    <div id="hamburger-menu" class="hidden">
-      <a href="admin.html" class="nav-link">Admin Panel</a>
-      <a href="bookoverview.php" class="nav-link">Book Overview</a>
-      <a href="register.html" class="nav-link">Register</a>
-    </div>
-  </nav>
-</header>
-
-    <div>
-  <form>
-    <label for="sort">Sort by:</label>
-    <select name="sort" id="sort" onchange="this.form.submit()">
-      <option value="default"<?php if ($sort == 'default') echo ' selected="selected"'; ?>>Default</option>
-      <option value="kurztitle"<?php if ($sort == 'kurztitle') echo ' selected="selected"'; ?>>Title</option>
-      <option value="autor"<?php if ($sort == 'autor') echo ' selected="selected"'; ?>>Author</option>
-      <option value="zustand"<?php if ($sort == 'zustand') echo ' selected="selected"'; ?>>Category</option>
-    </select>
-  </form>
-</div>
-
-
+<body>
+    <header>
+        <h1>Bookly</h1>
+        <nav>
+        <button class="btn" onclick="location.href='login.php'">Login</button>
+        <hamburger-icon>
+            <span></span>
+            <span></span>
+            <span></span>
+        </hamburger-icon>
+        <div id="hamburger-menu" class="hidden">
+            <a href="admin.html" class="nav-link">Admin Panel</a>
+            <a href="bookoverview.php" class="nav-link">Book Overview</a>
+            <a href="register.html" class="nav-link">Register</a>
+        </div>
+    </nav>
+    </header>
+    
     <div class="main-content">
         <div class="book-container">
         <?php
@@ -56,22 +140,10 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 
-$sort = isset($_GET['sort']) ? $_GET['sort'] : 'default';
-$sort_options = array('default', 'kurztitle', 'autor', 'zustand');
-if (!in_array($sort, $sort_options)) {
-    $sort = 'default';
-}
-
-if ($sort == 'default') {
-    $sql = "SELECT id, kurztitle, autor, sprache, zustand FROM buecher";
-} else {
-  $sql = "SELECT id, kurztitle, autor, sprache, zustand FROM buecher WHERE kurztitle != '' AND autor != '' AND zustand != '' ORDER BY $sort ASC";
-}
-
+$sql = "SELECT id, kurztitle, autor, sprache, zustand FROM buecher";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) > 0) {
-    echo '<div class="book-container">';
     while($row = mysqli_fetch_assoc($result)) {
         $random_cover = "https://picsum.photos/300/450?random=" . $row['id'];
         echo '<div class="book">';
@@ -80,12 +152,11 @@ if (mysqli_num_rows($result) > 0) {
         echo '<p class="book-author"><strong>Author:</strong> ' . $row['autor'] . '</p>';
         echo '<p class="book-category"><strong>Category:</strong> ' . $row['zustand'] . '</p>';
         echo '<p class="book-language"><strong>Language:</strong> ' . $row['sprache'] . '</p>';
-        echo '<a href="Description.php?id=' . $row['id'] . '" class="btn" style="text-decoration: none;">More Details</a>';
+        echo '<a href="Description.php?id=' . $row['id'] . '" class="btn">More Details</a>';
         echo '</div>';
         echo '<div class="book-image" style="background-image: url(' . $random_cover . ')"></div>';
         echo '</div>';
     }
-    echo '</div>';
 } else {
     echo "0 results";
 }
@@ -93,16 +164,15 @@ if (mysqli_num_rows($result) > 0) {
 mysqli_close($conn);
 ?>
 
+
         </div>
     </div>
-    <script>
-const hamburger = document.querySelector('hamburger-icon');
+    <script>const hamburger = document.querySelector('hamburger-icon');
         const nav = document.querySelector('header nav');
         
         hamburger.addEventListener('click', function() {
             nav.classList.toggle('active');
         });
-
         </script>
 </body>
 </html>
