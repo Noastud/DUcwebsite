@@ -65,7 +65,6 @@ if (isset($_GET['id'])) {
           $random_cover = "https://picsum.photos/300/450?random=" . $book_details['id'];
           
           echo '<div class="book-details">';
-          echo '<div class="book-details-image" style="background-image: url(' . $random_cover . ')"></div>';
           echo '<div class="book-details-text-container">';
           
           echo "<h2>" . $book_details['kurztitle'] . "</h2>";
@@ -81,6 +80,7 @@ if (isset($_GET['id'])) {
           }
           
           echo '</div>';
+          echo '<div class="book-details-image" style="background-image: url(' . $random_cover . ')"></div>';
           echo '</div>';
       } else {
           echo "Das Buch konnte nicht gefunden werden.";
