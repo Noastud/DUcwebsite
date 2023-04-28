@@ -9,7 +9,7 @@ main {
   position: relative;
 }
 
-
+/* beschreibt das farbschema der website*/
 :root {
   --background: #EEE0CB;
   --primary: #839788;
@@ -17,7 +17,7 @@ main {
   --tertiary: #BAA898;
   --accent: #BFD7EA;
 }
-
+/* beschreibt die farbe des hintergrunds und der inhalt des bodys auf jeder seite*/
 body {
   background-color: var(--background);
   font-family: Arial, sans-serif;
@@ -25,7 +25,7 @@ body {
   margin: 0;
 
 }
-
+/*erstellt den header der website*/
 header {
   background-color: var(--primary);
   padding: 1rem;
@@ -34,27 +34,27 @@ header {
   align-items: center;
 }
 
-
+/*ersetzt die h1 mit dem logo*/
 header h1 {
   margin: 0;
   color: #EEE0CB;
 }
-
+/*beschreibt die navbar*/
 header nav {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
-
+/*beschreibt die links in der navbar*/
 .nav-link {
   color: var(--secondary);
   text-decoration: none;
 }
-
+/*ändernt den hover effekt der links in der navbar*/
 .nav-link:hover {
   color: var(--accent);
 }
-
+/*beschreibt die hamburger icon*/
 hamburger-icon {
   display: inline-block;
   width: 30px;
@@ -62,7 +62,7 @@ hamburger-icon {
   position: relative;
   cursor: pointer;
 }
-
+/*beschreibt die hamburger icon span*/
 hamburger-icon span {
   display: block;
   width: 100%;
@@ -71,7 +71,7 @@ hamburger-icon span {
   position: absolute;
   left: 0;
 }
-
+/*beschreibt die hamburger icon */
 hamburger-icon span:nth-child(1) {
   top: 0;
 }
@@ -84,11 +84,11 @@ hamburger-icon span:nth-child(2) {
 hamburger-icon span:nth-child(3) {
   bottom: 0;
 }
-
+/*zeigt an wo der hamburger icon angezeigt wird*/
 #hamburger-menu {
   background-color: var(--primary);
   position: absolute;
-  top: calc(100% + 0.5rem); /* Position the menu just below the nav bar */
+  top: calc(100% + 0.5rem); 
   right: 0;
   padding: 1rem;
   border-radius: 0 0 0.5rem 0.5rem;
@@ -135,23 +135,23 @@ nav {
 .typewriter h2 {
   font-size: 7rem;
   margin: 2rem;
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: .15em solid orange; /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  letter-spacing: .15em; /* Adjust as needed */
+  overflow: hidden; /*versteckt den text bis die animation fertig ist */
+  border-right: .15em solid orange; /* schreimaschinen linie */
+  white-space: nowrap; /* lässt den inhalt auf einer linie */
+  margin: 0 auto; /* gibt einen effect zum tippen */
+  letter-spacing: .15em; /*zeilen abstand*/
   animation: 
     typing 3.5s steps(40, end),
     blink-caret .75s step-end infinite;
 }
 
-/* The typing effect */
+/* der tipp effect */
 @keyframes typing {
   from { width: 0 }
   to { width: 100% }
 }
 
-/* The typewriter cursor effect */
+/* der strifch effect */
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: orange; }
@@ -495,7 +495,13 @@ h2.book-title {
     display: flex;
     min-height: 490vh;
   }
-  
+
+  .book-details2 {
+    display: flex;
+    min-height: 490vh;
+    width: 5px;
+  }
+
   .book-details-text {
     flex: 1;
     padding-right: 20px;
@@ -503,13 +509,13 @@ h2.book-title {
   }
 
   .book-details-text-container {
-    width: 60%;
+    width: 40%;
     height: auto;
     margin-right: 5%;
     padding: 20px;
     background-color: var(--background);
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 23px;
     line-height: 1.6;
     margin-left: 3%;
 }
@@ -518,7 +524,7 @@ h2.book-title {
     margin-bottom: 10px;
     margin-left: 0%;
 }
-  
+ 
 .book-details-image {
     width: 29%;
     height: auto;

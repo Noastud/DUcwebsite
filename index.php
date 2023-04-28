@@ -9,13 +9,16 @@
 </head>
 <body>
 <header>
+        <!--code für weiterleitung an index.php dient als logo für schnellen zugriff auf hauptseite-->
   <button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
     <div class="logo">
       <h1>Bookly</h1>
     </div>
   </button>
   <nav>
+       <!--code für weiterleitung an login.php-->
     <button class="btn" onclick="location.href='login.php'">Login</button>
+        <!--code für hamburger button erstellt blöche die beim anklicken 3 auswahl möglichkeiten zeigt-->
     <hamburger-icon>
       <span></span>
       <span></span>
@@ -30,12 +33,18 @@
 </header>
 
     <main>
+      <!-- typewriter effekt für die h2 überschrift -->
+      
         <div class="typewriter">
             <h2>Bookly: Browse Antique Books.</h2>
           </div>
     </main>
     <script>
-    const hamburger = document.querySelector('hamburger-icon');
+
+       //javascript für hamburger button 
+        //der event listener wartet auf einen klick auf den hamburger button und führt dann die funktion aus die die klasse active hinzufügt
+        //die klasse active ist in der css datei definiert und sorgt dafür das die navigation angezeigt wird 
+        const hamburger = document.querySelector('hamburger-icon');
         const nav = document.querySelector('header nav');
         
         hamburger.addEventListener('click', function() {

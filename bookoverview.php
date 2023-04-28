@@ -7,13 +7,15 @@
 </head>
 <body class="book-page">
 <header>
+        <!--code für weiterleitung an index.php dient als logo für schnellen zugriff auf hauptseite-->
   <button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
     <div class="logo">
       <h1>Bookly</h1>
     </div>
   </button>
-  <nav>
+  <nav> <!--code für weiterleitung an login.php-->
     <button class="btn" onclick="location.href='login.php'">Login</button>
+    <!--code für hamburger button erstellt blöche die beim anklicken 3 auswahl möglichkeiten zeigt-->
     <hamburger-icon>
       <span></span>
       <span></span>
@@ -48,29 +50,32 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "books";
-
+// erstellt eine verbindung zur datenbank
 $conn = mysqli_connect($servername, $username, $password, $dbname);
+// Check überprüft verbindung
 
 if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
-
+// erstellt eine variable die das sort formular auswertet und die datenbank nach den ausgewählten kriterien sortiert
 $sort = isset($_GET['sort']) ? $_GET['sort'] : 'default';
 $sort_options = array('default', 'kurztitle', 'autor', 'zustand');
 if (!in_array($sort, $sort_options)) {
     $sort = 'default';
 }
-
+//erstellt eine default ansicht der datenbank
 if ($sort == 'default') {
     $sql = "SELECT id, kurztitle, autor, sprache, zustand FROM buecher";
 } else {
   $sql = "SELECT id, kurztitle, autor, sprache, zustand FROM buecher WHERE kurztitle != '' AND autor != '' AND zustand != '' ORDER BY $sort ASC";
 }
-
+//mysqli_query nimmt die $conn variable und die $sql variable und führt sie aus dies führt zum empfangen der informationen aus der datenbank
 $result = mysqli_query($conn, $sql);
-
+//mysqli_num_rows zählt die anzahl der zeilen in der datenbank
 if (mysqli_num_rows($result) > 0) {
-    echo '<div class="book-container">';
+    echo '<div class="book-container">';¨
+    //mysqli_fetch_assoc gibt die datenbank in einem assoziativen array aus
+
     while($row = mysqli_fetch_assoc($result)) {
         $random_cover = "https://picsum.photos/300/450?random=" . $row['id'];
         echo '<div class="book">';
@@ -88,14 +93,17 @@ if (mysqli_num_rows($result) > 0) {
 } else {
     echo "0 results";
 }
-
+//schließt die verbindung zur datenbank
 mysqli_close($conn);
 ?>
 
         </div>
     </div>
     <script>
-const hamburger = document.querySelector('hamburger-icon');
+          //javascript für hamburger button 
+          //der event listener wartet auf einen klick auf den hamburger button und führt dann die funktion aus die die klasse active hinzufügt
+          //die klasse active ist in der css datei definiert und sorgt dafür das die navigation angezeigt wird 
+        const hamburger = document.querySelector('hamburger-icon');
         const nav = document.querySelector('header nav');
         
         hamburger.addEventListener('click', function() {
@@ -103,6 +111,7 @@ const hamburger = document.querySelector('hamburger-icon');
         });
 
         </script>
+        <!--code für footer-->
         <nav class="nav2">
   <a class="nav-link" href="#">Books</a>
 </nav>

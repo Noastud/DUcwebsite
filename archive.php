@@ -10,6 +10,7 @@
 </head>
 <body>
 <header>
+      <!--code für weiterleitung an index.php dient als logo für schnellen zugriff auf hauptseite-->
   <button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
     <div class="logo">
       <h1>Bookly</h1>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,12 +8,14 @@
 </head>
 
 <body class="book-page">
-<header>
+<header>      
+  <!--code für weiterleitung an index.php dient als logo für schnellen zugriff auf hauptseite.-->
   <button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
     <div class="logo">
       <h1>Bookly</h1>
     </div>
   </button>
+  <!--code für die navigationsleiste, login und hamburgermenu. -->
   <nav>
     <button class="btn" onclick="location.href='login.php'">Login</button>
     <hamburger-icon>
@@ -30,7 +31,7 @@
   </nav>
 </header>
 
-   
+   <!--Code für die Search-Leiste mit einem Titel obendran.-->
       <div>
   <h1 class="title5">Bookly</h1>
 </div>
@@ -40,21 +41,24 @@
         <button type="submit" name="search_btn"></button>
     </form>
 </div>
-
+<!--Code für den eigentlichen Inhalt der webseite (Die Bücher). 
+Der folgende PHP Code wird in eine Div Class namens "main-content eingepackt.-->
 <div class="main-content">
     <div class="books-container">
+      <!--PHP Code, der sich innerhalb einer Div Class namens "main-content" befindet.-->
     <?php
+    //angeben der angemessen Login Daten, und auf welche Datenbank man zugreiffen muss für die Connection.
     $servername = "localhost";
     $username = "root";
     $password = "";
     $dbname = "books";
-
+    //verbindung zur Datenbank wird versucht mit den angemessenen Login Daten.
     $conn = mysqli_connect($servername, $username, $password, $dbname);
-
+    //Falls die Verbindung fehlgeschlagen ist, gibt man einen Error an.
     if (!$conn) {
         die("Connection failed: " . mysqli_connect_error());
     }
-
+    //
     if (isset($_POST['search_btn'])) {
         $search_query = mysqli_real_escape_string($conn, $_POST['search_query']);
         $sql = "SELECT id, kurztitle, autor, sprache, zustand FROM buecher WHERE kurztitle LIKE '%$search_query%' OR autor LIKE '%$search_query%' OR zustand LIKE '%$search_query%'";
@@ -64,7 +68,7 @@
         if (!in_array($sort, $sort_options)) {
             $sort = 'default';
         }
-
+        
         if ($sort == 'default') {
             $sql = "SELECT id, kurztitle, autor, sprache, zustand FROM buecher";
         } else {
@@ -73,7 +77,7 @@
     }
 
     $result = mysqli_query($conn, $sql);
-
+    //gibt alle Resultate aus
     if (mysqli_num_rows($result) > 0) {
         echo '<div class="book-container">';
         while($row = mysqli_fetch_assoc($result)) {
@@ -90,24 +94,27 @@
             echo '</div>';
         }
         echo '</div>';
+        //Wenn nichts gefunden worden ist, gibt es "0 results" aus.
     } else {
         echo "0 results";
     }
-
+    //Die verbindung zur Datenbank wird geschlossen
     mysqli_close($conn);
     ?>
     </div>
 </div>
 
 
-      <script>  const hamburger = document.querySelector('hamburger-icon');
+      <script>  
+       //javascript für hamburger button 
+        //der event listener wartet auf einen klick auf den hamburger button und führt dann die funktion aus die die klasse active hinzufügt
+        //die klasse active ist in der css datei definiert und sorgt dafür das die navigation angezeigt wird 
+const hamburger = document.querySelector('hamburger-icon');
         const nav = document.querySelector('header nav');
         
         hamburger.addEventListener('click', function() {
             nav.classList.toggle('active');
         });
-
-
 
         </script>
         <nav class="nav2">

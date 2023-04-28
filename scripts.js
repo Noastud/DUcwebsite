@@ -2,30 +2,29 @@ document.addEventListener("DOMContentLoaded", function() {
     // Hamburger menu toggle
     const hamburgerIcon = document.querySelector("hamburger-icon");
     const hamburgerMenu = document.getElementById("hamburger-menu");
-
+//erstellt ein Event, wenn der Nutzer auf das Hamburger Icon klickt
     hamburgerIcon.addEventListener("click", () => {
         hamburgerMenu.classList.toggle("hidden");
     });
     
-    // Book filter functionality
+    //elements der filter form
     const filterForm = document.getElementById("filter-form");
     const authorInput = document.getElementById("author");
-    const yearInput = document.getElementById("year");
     const salesInput = document.getElementById("sales");
     const bookList = document.getElementById("book-list");
 
-    // Dummy data for demonstration purposes
+    // test values
     const books = [
         { id: 1, title: "Book 1", author: "Author A", year: 2000, sales: 1000 },
         { id: 2, title: "Book 2", author: "Author B", year: 2010, sales: 2000 },
         { id: 3, title: "Book 3", author: "Author A", year: 2020, sales: 500 },
     ];
+    // stellt die Bücher dar und filtert sie nach den Eingaben des Nutzers
 
     function renderBooks() {
         const authorFilter = authorInput.value.toLowerCase();
         const yearFilter = yearInput.value;
         const salesFilter = salesInput.value;
-
         const filteredBooks = books.filter(book => {
             if (authorFilter && !book.author.toLowerCase().includes(authorFilter)) {
                 return false;
@@ -38,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             return true;
         });
-
+        //stellt die Bücher dar
         bookList.innerHTML = filteredBooks.map(book => `
             <div class="book">
                 <h3>${book.title}</h3>
@@ -48,7 +47,8 @@ document.addEventListener("DOMContentLoaded", function() {
             </div>
         `).join("");
     }
-
+    //erstellt ein Event, wenn der Nutzer die Eingaben abschickt
+    //und ruft die Funktion renderBooks auf
     filterForm.addEventListener("submit", (e) => {
         e.preventDefault();
         renderBooks();
