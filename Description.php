@@ -68,7 +68,6 @@ if (isset($_GET['id'])) {
         
           echo "<h2>" . $book_details['kurztitle'] . "</h2>";
           echo "<p><strong>Titel:</strong> " . $book_details['title'] . "</p>";
-          
           echo '<div class="book-details-text-container">';
           echo "<p><strong>Autor:</strong> " . $book_details['autor'] . "</p>";
           echo "<p><strong>Verfasser:</strong> " . $book_details['verfasser'] . "</p>";

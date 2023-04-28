@@ -525,12 +525,12 @@ h2.book-title {
     margin-top: 10%;
   }
   
-  .book-details-text-container p {
-    margin-top: 20%;
-    margin-bottom: 10px;
-    margin-left: 0;
-    text-align: left;
+
+  .book-details-title{
+
+    margin-top: 50%;
   }
+ 
   
   .book-details-image {
     width: 100%;
