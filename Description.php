@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Archive</title>
-    <link rel="stylesheet" href="style/styles.css?v=2">
+    <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body class="difback">
 <header>
@@ -63,16 +63,18 @@ if (isset($_GET['id'])) {
       if (mysqli_num_rows($result_book_details) > 0) {
           $book_details = $result_book_details->fetch_assoc();
           $random_cover = "https://picsum.photos/300/450?random=" . $book_details['id'];
-          
+
           echo '<div class="book-details">';
-        
-          echo "<h2>" . $book_details['kurztitle'] . "</h2>";
-          echo "<p><strong>Titel:</strong> " . $book_details['title'] . "</p>";
+          echo '<div class="book-details2">';
+          echo '<h2>' . $book_details['kurztitle'] . '</h2>';
           echo '<div class="book-details-text-container">';
-          echo "<p><strong>Autor:</strong> " . $book_details['autor'] . "</p>";
-          echo "<p><strong>Verfasser:</strong> " . $book_details['verfasser'] . "</p>";
-          echo "<p><strong>Sprache:</strong> " . $book_details['sprache'] . "</p>";
-          echo "<p><strong>Zustand:</strong> " . $book_details['zustand'] . "</p>";
+          echo '<p><strong>Titel:</strong></p>';
+          echo '<p>' . $book_details['title'] . '</p>';
+          echo '<div class="book-details-text-container2">';
+          echo '<p><strong>Autor:</strong> ' . $book_details['autor'] . '</p>';
+          echo '<p><strong>Verfasser:</strong> ' . $book_details['verfasser'] . '</p>';
+          echo '<p><strong>Sprache:</strong> ' . $book_details['sprache'] . '</p>';
+          echo '<p><strong>Zustand:</strong> ' . $book_details['zustand'] . '</p>';
           
           if (isset($book_details['text'])) {
               echo '<p><strong>Inhalt:</strong></p>';
