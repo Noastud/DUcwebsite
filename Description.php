@@ -35,16 +35,7 @@
   <?php
     // startet die session
     session_start();
-
-    // erstellt eine verbindung zur datenbank
-    $conn = mysqli_connect("localhost", "root", "", "books");
-
-    // Check überprüft verbindung
-    if (!$conn) {
-      die("Verbindung fehlgeschlagen: " . mysqli_connect_error());
-    } else {
-       "Verbindung erfolgreich";
-    }
+    include 'conf.php';
 
     if (isset($_GET['id'])) {
       // GET die ID von einer anderen seite

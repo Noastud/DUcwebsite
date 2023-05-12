@@ -4,67 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Archive</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style/styles.css?v=2">
     <style>
-     
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4);
-        }
-
-        .modal-content {
-            background-color: #fefefe;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 30%;
-            max-width: 400px;
-        }
-
-        .close {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover, .close:focus {
-            color: black;
-            text-decoration: none;
-            cursor: pointer;
-        }
+  .green-box {
+   color: var(--primary);
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
     </style>
     <script src="scripts.js" defer></script>
 </head>
 <body>
 <header>
-  <button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
+<button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
     <div class="logo">
-      <h1>Bookly</h1>
+    <h1>Bookly</h1>
     </div>
-  </button>
-  <nav>
+</button>
+<nav>
     <button class="btn" onclick="location.href='login.php'">Login</button>
     <hamburger-icon>
-      <span></span>
-      <span></span>
-      <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
     </hamburger-icon>
     <div id="hamburger-menu" class="hidden">
-      <a href="admin.html" class="nav-link">Admin Panel</a>
-      <a href="bookoverview.php" class="nav-link">Book Overview</a>
-      <a href="details.php" class="nav-link">Search</a>    </div>
-  </nav>
+    <a href="admin.html" class="nav-link">Admin Panel</a>
+    <a href="bookoverview.php" class="nav-link">Book Overview</a>
+    <a href="details.php" class="nav-link">Search</a>    </div>
+</nav>
 </header>
 
-
+<div class="green-box"></div>
 
 <div id="loginModal" class="modal">
     <div class="modal-content">

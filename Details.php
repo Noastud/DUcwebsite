@@ -47,18 +47,7 @@ Der folgende PHP Code wird in eine Div Class namens "main-content eingepackt.-->
     <div class="books-container">
       <!--PHP Code, der sich innerhalb einer Div Class namens "main-content" befindet.-->
     <?php
-    //angeben der angemessen Login Daten, und auf welche Datenbank man zugreiffen muss für die Connection.
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "books";
-    //verbindung zur Datenbank wird versucht mit den angemessenen Login Daten.
-    $conn = mysqli_connect($servername, $username, $password, $dbname);
-    //Falls die Verbindung fehlgeschlagen ist, gibt man einen Error an.
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-    //
+      include 'conf.php';
     if (isset($_POST['search_btn'])) {
         $search_query = mysqli_real_escape_string($conn, $_POST['search_query']);
         $sql = "SELECT id, kurztitle, autor, sprache, zustand FROM buecher WHERE kurztitle LIKE '%$search_query%' OR autor LIKE '%$search_query%' OR zustand LIKE '%$search_query%'";

@@ -551,3 +551,11 @@ h2.book-title {
     object-fit: cover;
   }
   
+
+  .green-box {
+   color: var(--primary);
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    margin-top: 100px;
+}

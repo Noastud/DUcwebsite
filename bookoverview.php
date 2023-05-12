@@ -52,18 +52,7 @@ if (!in_array($sort, $sort_options)) {
     <div class="main-content">
         <div class="book-container">
         <?php
-        
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "books";
-// erstellt eine verbindung zur datenbank
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-// Check überprüft verbindung
-
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-}
+ include 'conf.php';
 
 //erstellt eine default ansicht der datenbank
 if ($sort == 'default') {
