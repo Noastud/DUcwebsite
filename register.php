@@ -5,64 +5,105 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Archive</title>
     <link rel="stylesheet" href="style/styles.css">
-  
     <script src="scripts.js" defer></script>
 </head>
 <body>
 <header>
-<button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
-    <div class="logo">
-    <h1>Bookly</h1>
-    </div>
-</button>
-<nav>
-    <button class="btn" onclick="location.href='login.php'">login</button>
-    <hamburger-icon>
-    <span></span>
-    <span></span>
-    <span></span>
-    </hamburger-icon>
-    <div id="hamburger-menu" class="hidden">
-    <a href="admin.html" class="nav-link">Admin Panel</a>
-    <a href="bookoverview.php" class="nav-link">Book Overview</a>
-    <a href="details.php" class="nav-link">Search</a>    </div>
+    <!-- Code für Weiterleitung an index.php, dient als Logo für schnellen Zugriff auf die Hauptseite -->
+    <button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
+        <div class="logo">
+            <h1>Bookly</h1>
+        </div>
+    </button>
+    <nav>
+        <?php
+        session_start();
+
+        // Überprüfen, ob der Benutzer angemeldet ist
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+            // Benutzer ist angemeldet, zeige den "Logout"-Button
+            echo '<button class="btn" onclick="location.href=\'logout.php\'">Logout</button>';
+        } else {
+            // Benutzer ist nicht angemeldet, zeige den "Login"-Button
+            echo '<button class="btn" onclick="location.href=\'login.php\'">Login</button>';
+        }
+        ?>
+        <!-- Code für den Hamburger-Button, erstellt Blöcke, die beim Klicken drei Auswahlmöglichkeiten anzeigen -->
+        <hamburger-icon>
+            <span></span>
+            <span></span>
+            <span></span>
+        </hamburger-icon>
+        <div id="hamburger-menu" class="hidden">
+            <a href="index.php" class="nav-link">Home</a>
+            <a href="bookoverview.php" class="nav-link">Book Overview</a>
+            <a href="bookoverview.php" class="nav-link">Search</a>
+        </div>
     </nav>
 </header>
 <?php
-// Start the session
-session_start();
+// Starte die Session
 
-// Include the database configuration file
+// Inkludiere die Datenbank-Konfigurationsdatei
 include 'conf.php';
 
-// Check if the registration form is submitted
+// Überprüfe, ob das Registrierungsformular abgeschickt wurde
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve the user input
+    // Hole die Benutzereingabe
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
 
-    // Hash the password
+    // Validiere und bereite die Eingaben vor
+    $username = trim($username);
+    $password = trim($password);
+    $email = trim($email);
+
+    // Überprüfe, ob alle Pflichtfelder ausgefüllt sind
+    if (empty($username) || empty($password) || empty($email)) {
+        $_SESSION['error'] = "Please fill in all required fields.";
+        header("Location: register.php");
+        exit();
+    }
+
+    // Überprüfe die E-Mail-Adresse
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $_SESSION['error'] = "Invalid email address.";
+        header("Location: register.php");
+        exit();
+    }
+
+    // Überprüfe, ob der Benutzername bereits verwendet wird
+    $sql = "SELECT * FROM benutzer WHERE benutzername = '$username'";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        $_SESSION['error'] = "Username already taken.";
+        header("Location: register.php");
+        exit();
+    }
+
+    // Hash das Passwort
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Prepare the SQL statement to insert the user data into the table
+    // Bereite das SQL-Statement vor, um die Benutzerdaten in die Tabelle einzufügen
     $sql = "INSERT INTO benutzer (benutzername, passwort, email) VALUES ('$username', '$hashedPassword', '$email')";
 
-    // Execute the SQL statement
+    // Führe das SQL-Statement aus
     if (mysqli_query($conn, $sql)) {
-        // Registration successful
+        // Registrierung erfolgreich
         $_SESSION['message'] = "Registration successful. You can now login.";
         header("Location: login.php");
         exit();
     } else {
-        // Registration failed
+        // Registrierung fehlgeschlagen
         $_SESSION['error'] = "Error: " . mysqli_error($conn);
         header("Location: register.php");
         exit();
     }
 }
 
-// Close the database connection
+// Schließe die Datenbankverbindung
 mysqli_close($conn);
 ?>
 
@@ -71,7 +112,7 @@ mysqli_close($conn);
     <div class="register-card">
         <h2>Register</h2>
         <?php
-        // Display error message if exists
+        // Zeige Fehlermeldung an, wenn vorhanden
         if (isset($_SESSION['error'])) {
             echo '<p class="error-message">' . $_SESSION['error'] . '</p>';
             unset($_SESSION['error']);
@@ -97,26 +138,7 @@ mysqli_close($conn);
 
 
 <script>
-    // Add this to your scripts.js file
-    const loginBtn = document.querySelector('.btn');
-    const closeBtn = document.getElementById('closeBtn');
-    const loginModal = document.getElementById('loginModal');
-
-    loginBtn.onclick = () => {
-        loginModal.style.display = 'block';
-    }
-
-    closeBtn.onclick = () => {
-        loginModal.style.display = 'none';
-    }
-
-    window.onclick = (event) => {
-        if (event.target === loginModal) {
-            loginModal.style.display = 'none';
-        }
-    }
-    
-    // JavaScript for hamburger button
+    // JavaScript für den Hamburger-Button
     const hamburger = document.querySelector('hamburger-icon');
     const nav = document.querySelector('header nav');
     

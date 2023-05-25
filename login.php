@@ -22,9 +22,10 @@
     <span></span>
     </hamburger-icon>
     <div id="hamburger-menu" class="hidden">
-    <a href="admin.html" class="nav-link">Admin Panel</a>
-    <a href="bookoverview.php" class="nav-link">Book Overview</a>
-    <a href="details.php" class="nav-link">Search</a>    </div>
+            <a href="index.php" class="nav-link">Home</a>
+            <a href="bookoverview.php" class="nav-link">Book Overview</a>
+            <a href="bookoverview.php" class="nav-link">Search</a>
+        </div>
     </nav>
 </header>
 <?php
@@ -32,8 +33,8 @@ session_start();
 include 'conf.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
 
     // Prepare the SQL statement to retrieve the user data from the table
     $sql = "SELECT * FROM benutzer WHERE benutzername = '$username'";
@@ -82,24 +83,6 @@ mysqli_close($conn);
 </div>
 
 <script>
-    // Add this to your scripts.js file
-    const loginBtn = document.querySelector('.btn');
-    const closeBtn = document.getElementById('closeBtn');
-    const loginModal = document.getElementById('loginModal');
-
-    loginBtn.onclick = () => {
-        loginModal.style.display = 'block';
-    }
-
-    closeBtn.onclick = () => {
-        loginModal.style.display = 'none';
-    }
-
-    window.onclick = (event) => {
-        if (event.target === loginModal) {
-            loginModal.style.display = 'none';
-        }
-    }
     
     // JavaScript for hamburger button
     const hamburger = document.querySelector('hamburger-icon');

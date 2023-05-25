@@ -35,9 +35,9 @@
             <span></span>
         </hamburger-icon>
         <div id="hamburger-menu" class="hidden">
-            <a href="admin.html" class="nav-link">Admin Panel</a>
+            <a href="index.php" class="nav-link">Home</a>
             <a href="bookoverview.php" class="nav-link">Book Overview</a>
-            <a href="details.php" class="nav-link">Search</a>
+            <a href="bookoverview.php" class="nav-link">Search</a>
         </div>
     </nav>
 </header>
