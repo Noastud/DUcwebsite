@@ -95,6 +95,29 @@
     <a href="details.php" class="nav-link">Search</a>    </div>
     </nav>
 </header>
+<?php
+include 'conf.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Hashen des Passworts
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // SQL-Statement vorbereiten
+    $sql = "INSERT INTO benutzer (benutzername, passwort) VALUES ('$username', '$hashedPassword')";
+
+    // SQL-Statement ausführen
+    if (mysqli_query($conn, $sql)) {
+        echo "Registrierung erfolgreich. Du kannst dich jetzt einloggen.";
+    } else {
+        echo "Fehler bei der Registrierung: " . mysqli_error($conn);
+    }
+}
+
+// Datenbankverbindung schließen
+mysqli_close($conn);
+?>
 
 <div class="green-box">
     <div class="login-card">
