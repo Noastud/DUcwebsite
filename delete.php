@@ -15,6 +15,7 @@
         border-radius: 4px;
         background-color: #f2f2f2;
         margin-bottom: 10px;
+        color: black;
       }
 
       /* Custom styles for the book details */
@@ -86,6 +87,52 @@
     // Store the book ID in the session
     $_SESSION['book_id'] = $book_id;
 
+    // Check if the form is submitted
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      // Check if the delete action is triggered
+      if (isset($_POST['delete'])) {
+        // SQL statement to delete the book entry
+        $sql_delete_book = "DELETE FROM buecher WHERE id = '$book_id'";
+
+        // Execute the query
+        if (mysqli_query($conn, $sql_delete_book)) {
+          echo "Book deleted successfully.";
+          // Redirect to a desired page after successful deletion
+          header("Location: index.php");
+          exit();
+        } else {
+          echo "Error deleting book: " . mysqli_error($conn);
+        }
+      }
+
+      // Check if the approve edit action is triggered
+      if (isset($_POST['approve_edit'])) {
+        // Get the updated values from the form
+        $updated_title = mysqli_real_escape_string($conn, $_POST['title']);
+        $updated_autor = mysqli_real_escape_string($conn, $_POST['autor']);
+        $updated_verfasser = mysqli_real_escape_string($conn, $_POST['verfasser']);
+        $updated_sprache = mysqli_real_escape_string($conn, $_POST['sprache']);
+        $updated_zustand = mysqli_real_escape_string($conn, $_POST['zustand']);
+
+        // SQL statement to update the book entry
+        $sql_update_book = "UPDATE buecher 
+                            SET title = '$updated_title', autor = '$updated_autor', 
+                                verfasser = '$updated_verfasser', sprache = '$updated_sprache', 
+                                zustand = '$updated_zustand' 
+                            WHERE id = '$book_id'";
+
+        // Execute the query
+        if (mysqli_query($conn, $sql_update_book)) {
+          echo "Book updated successfully.";
+          // Refresh the page to show the updated details
+          header("Location: details.php?id=$book_id");
+          exit();
+        } else {
+          echo "Error updating book: " . mysqli_error($conn);
+        }
+      }
+    }
+
     // SQL statement to get the details of the book
     $sql_book_details = "SELECT * 
                          FROM buecher 
@@ -98,54 +145,12 @@
       if (mysqli_num_rows($result_book_details) > 0) {
         $book_details = $result_book_details->fetch_assoc();
         $random_cover = "https://picsum.photos/300/450?random=" . $book_details['id'];
-
-        // Check if the delete action is triggered
-        if (isset($_POST['delete'])) {
-          // SQL statement to delete the book entry
-          $sql_delete_book = "DELETE FROM buecher WHERE id = '$book_id'";
-
-          // Execute the query
-          if (mysqli_query($conn, $sql_delete_book)) {
-            echo "Book deleted successfully.";
-            // Redirect to a desired page after successful deletion
-            header("Location: index.php");
-            exit();
-          } else {
-            echo "Error deleting book: " . mysqli_error($conn);
-          }
-        }
-
-        // Check if the approve edit action is triggered
-        if (isset($_POST['approve_edit'])) {
-          // Get the updated values from the form
-          $updated_title = mysqli_real_escape_string($conn, $_POST['title']);
-          $updated_autor = mysqli_real_escape_string($conn, $_POST['autor']);
-          $updated_verfasser = mysqli_real_escape_string($conn, $_POST['verfasser']);
-          $updated_sprache = mysqli_real_escape_string($conn, $_POST['sprache']);
-          $updated_zustand = mysqli_real_escape_string($conn, $_POST['zustand']);
-
-          // SQL statement to update the book entry
-          $sql_update_book = "UPDATE buecher 
-                              SET title = '$updated_title', autor = '$updated_autor', 
-                                  verfasser = '$updated_verfasser', sprache = '$updated_sprache', 
-                                  zustand = '$updated_zustand' 
-                              WHERE id = '$book_id'";
-
-          // Execute the query
-          if (mysqli_query($conn, $sql_update_book)) {
-            echo "Book updated successfully.";
-            // Refresh the page to show the updated details
-            header("Location: details.php?id=$book_id");
-            exit();
-          } else {
-            echo "Error updating book: " . mysqli_error($conn);
-          }
-        }
         ?>
         <div class="book-details">
           <div class="book-details-text-container">
             <form method="post" action="">
-              <h2><?php echo $book_details['kurztitle']; ?></h2>
+              <p><strong>Kurztitle:</strong></p>
+              <input type="text" name="kurztitle" value="<?php echo $book_details['kurztitle']; ?>">
               <p><strong>Titel:</strong></p>
               <input type="text" name="title" value="<?php echo $book_details['title']; ?>">
               <p><strong>Autor:</strong></p>
