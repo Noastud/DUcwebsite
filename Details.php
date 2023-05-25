@@ -17,7 +17,18 @@
   </button>
   <!--code für die navigationsleiste, login und hamburgermenu. -->
   <nav>
-    <button class="btn" onclick="location.href='login.php'">Login</button>
+  <?php
+        session_start();
+
+        // Check if the user is logged in
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+            // User is logged in, show the "Logout" button
+            echo '<button class="btn" onclick="location.href=\'logout.php\'">Logout</button>';
+        } else {
+            // User is not logged in, show the "Login" button
+            echo '<button class="btn" onclick="location.href=\'login.php\'">Login</button>';
+        }
+        ?>
     <hamburger-icon>
       <span></span>
       <span></span>

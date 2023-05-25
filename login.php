@@ -96,26 +96,43 @@
     </nav>
 </header>
 <?php
+session_start();
 include 'conf.php';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Hashen des Passworts
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    // Prepare the SQL statement to retrieve the user data from the table
+    $sql = "SELECT * FROM benutzer WHERE benutzername = '$username'";
 
-    // SQL-Statement vorbereiten
-    $sql = "INSERT INTO benutzer (benutzername, passwort) VALUES ('$username', '$hashedPassword')";
+    // Execute the SQL statement
+    $result = mysqli_query($conn, $sql);
 
-    // SQL-Statement ausführen
-    if (mysqli_query($conn, $sql)) {
-        echo "Registrierung erfolgreich. Du kannst dich jetzt einloggen.";
+    // Check if a matching row is found
+    if (mysqli_num_rows($result) === 1) {
+        $row = mysqli_fetch_assoc($result);
+
+        // Verify the password
+        if (password_verify($password, $row['passwort'])) {
+            // Password is correct, create a session
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $row['benutzername'];
+            $_SESSION['admin'] = $row['admin'];
+
+            // Redirect to the desired page after successful login
+            header("Location: bookoverview.php");
+            exit();
+        } else {
+            // Invalid password
+            echo "Error: Invalid password.";
+        }
     } else {
-        echo "Fehler bei der Registrierung: " . mysqli_error($conn);
+        // User not found
+        echo "Error: User not found.";
     }
 }
 
-// Datenbankverbindung schließen
 mysqli_close($conn);
 ?>
 
@@ -151,17 +168,14 @@ mysqli_close($conn);
             loginModal.style.display = 'none';
         }
     }
-              //javascript für hamburger button 
-          //der event listener wartet auf einen klick auf den hamburger button und führt dann die funktion aus die die klasse active hinzufügt
-          //die klasse active ist in der css datei definiert und sorgt dafür das die navigation angezeigt wird 
-          const hamburger = document.querySelector('hamburger-icon');
-        const nav = document.querySelector('header nav');
-        
-        hamburger.addEventListener('click', function() {
-            nav.classList.toggle('active');
-        });
-
+    
+    // JavaScript for hamburger button
+    const hamburger = document.querySelector('hamburger-icon');
+    const nav = document.querySelector('header nav');
+    
+    hamburger.addEventListener('click', function() {
+        nav.classList.toggle('active');
+    });
 </script>
 </body>
 </html>
-
