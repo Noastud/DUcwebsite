@@ -77,7 +77,6 @@
   <div class="box">
   <?php
   // Start the session
-  session_start();
   include 'conf.php';
 
   if (isset($_GET['id'])) {
@@ -163,45 +162,28 @@
               <input type="text" name="zustand" value="<?php echo $book_details['zustand']; ?>">
               <br>
               <input type="submit" name="approve_edit" value="Approve Edit" class="btn">
-              <input type="submit" name="delete" value="Delete" class="btn">
-              <?php if (isset($book_details['text'])) { ?>
-                <p><strong>Inhalt:</strong></p>
-                <p><?php echo $book_details['text']; ?></p>
-              <?php } ?>
+              <input type="submit" name="delete" value="Delete" class="btn" style="background-color: #dc3545;">
             </form>
           </div>
           <div class="book-details-image">
-            <img src="<?php echo $random_cover; ?>" alt="Book cover">
+            <img src="<?php echo $random_cover; ?>">
           </div>
         </div>
         <?php
-      } else {
-        echo "Das Buch konnte nicht gefunden werden.";
       }
     } else {
-      echo "Fehler beim Ausführen der Abfrage: " . mysqli_error($conn);
+      echo "No book found.";
     }
   } else {
-    echo "Keine Buch-ID vorhanden.";
+    echo "No book ID provided.";
   }
-  // Close the connection
-  mysqli_close($conn);
+
+  $conn->close();
   ?>
   </div>
 </div>
-<script>  
-  // JavaScript for the hamburger button
-  // The event listener waits for a click on the hamburger button and then executes the function that adds the 'active' class
-  // The 'active' class is defined in the CSS file and is responsible for displaying the navigation
-  const hamburger = document.querySelector('hamburger-icon');
-  const nav = document.querySelector('header nav');
-
-  hamburger.addEventListener('click', function() {
-      nav.classList.toggle('active');
-  });
+<script>
+// Your Javascript Code
 </script>
-<nav class="nav2">
-  <a class="nav-link" href="#">Books</a>
-</nav>
 </body>
 </html>

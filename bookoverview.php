@@ -59,6 +59,36 @@ if (!in_array($sort, $sort_options)) {
   </form>
 </div>
 
+<div class="search-bar">
+    <form method="post" action="">
+        <input type="text" name="search_query" placeholder="Search..." onfocus="showPopup()">
+        <button type="submit" name="search_btn"></button>
+    </form>
+</div>
+
+<div class="main-content">
+    <div class="book-container">
+    <?php
+     include 'conf.php';
+
+    // Added the search handling PHP code here
+    if (isset($_POST['search_btn'])) {
+        $search_query = mysqli_real_escape_string($conn, $_POST['search_query']);
+        $sql = "SELECT id, kurztitle, autor, sprache, zustand FROM buecher WHERE kurztitle LIKE '%$search_query%' OR autor LIKE '%$search_query%' OR zustand LIKE '%$search_query%'";
+    } else {
+        if ($sort == 'default') {
+            $sql = "SELECT id, kurztitle, autor, sprache, zustand FROM buecher";
+        } else {
+          $sql = "SELECT id, kurztitle, autor, sprache, zustand FROM buecher WHERE kurztitle != '' AND autor != '' AND zustand != '' ORDER BY $sort ASC";
+        }
+    }
+
+    // Rest of your PHP code
+    // ...
+    ?>
+    </div>
+</div>
+
 
     <div class="main-content">
         <div class="book-container">
