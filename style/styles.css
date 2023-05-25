@@ -561,3 +561,9 @@ h2.book-title {
             margin-top: 100px;
         }
 
+        #admin-button-container {
+          position: fixed;
+          top: 20px;  /* Adjust as needed */
+          right: 20px;  /* Adjust as needed */
+        }
+        

@@ -45,7 +45,6 @@
   <div class="box">
   <?php
     // startet die session
-    session_start();
     include 'conf.php';
 
     if (isset($_GET['id'])) {
@@ -73,7 +72,13 @@
     <p><strong>Verfasser:</strong> <?php echo $book_details['verfasser']; ?></p>
     <p><strong>Sprache:</strong> <?php echo $book_details['sprache']; ?></p>
     <p><strong>Zustand:</strong> <?php echo $book_details['zustand']; ?></p>
-    <button class="btn" onclick="location.href='delete.php?id=<?php echo $book_id; ?>'">Edit</button>
+<!-- Only show the "Edit" button if the user is logged in as an admin -->
+<?php 
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true && 
+    isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
+    echo '<button class="btn" onclick="location.href=\'delete.php?id='. $book_id . '\'">Edit</button>';
+} 
+?>
     <?php if (isset($book_details['text'])) { ?>
       <p><strong>Inhalt:</strong></p>
       <p><?php echo $book_details['text']; ?></p>
@@ -97,6 +102,24 @@ mysqli_close($conn);
 ?>
 
   </div>
+  <?php
+    session_start();
+
+    // Check if the user is logged in
+    if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
+        // User is logged in, show the "Logout" button
+        echo '<button class="btn" onclick="location.href=\'logout.php\'">Logout</button>';
+
+        // If the user is an admin, show the button that links to newbook.php
+        if (isset($_SESSION['admin']) && $_SESSION['admin'] === true) {
+            echo '<button class="btn" onclick="location.href=\'newbook.php\'">Add New Book</button>';
+        }
+    } else {
+        // User is not logged in, show the "Login" button
+        echo '<button class="btn" onclick="location.href=\'login.php\'">Login</button>';
+    }
+  ?>
+
 </div>
 <script>  
          //javascript für hamburger button 
@@ -117,7 +140,5 @@ mysqli_close($conn);
 <nav class="nav2">
   <a class="nav-link" href="#">Books</a>
 </nav>
-
-
 </body>
 </html> 

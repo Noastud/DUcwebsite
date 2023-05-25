@@ -147,27 +147,31 @@
         ?>
         <div class="book-details">
           <div class="book-details-text-container">
+                        
             <form method="post" action="">
-              <p><strong>Kurztitle:</strong></p>
-              <input type="text" name="kurztitle" value="<?php echo $book_details['kurztitle']; ?>">
-              <p><strong>Titel:</strong></p>
-              <input type="text" name="title" value="<?php echo $book_details['title']; ?>">
-              <p><strong>Autor:</strong></p>
-              <input type="text" name="autor" value="<?php echo $book_details['autor']; ?>">
-              <p><strong>Verfasser:</strong></p>
-              <input type="text" name="verfasser" value="<?php echo $book_details['verfasser']; ?>">
-              <p><strong>Sprache:</strong></p>
-              <input type="text" name="sprache" value="<?php echo $book_details['sprache']; ?>">
-              <p><strong>Zustand:</strong></p>
-              <input type="text" name="zustand" value="<?php echo $book_details['zustand']; ?>">
-              <br>
-              <input type="submit" name="approve_edit" value="Approve Edit" class="btn">
-              <input type="submit" name="delete" value="Delete" class="btn" style="background-color: #dc3545;">
-            </form>
+                <p><strong>Kurztitle:</strong></p>
+                <input type="text" name="kurztitle" value="<?php echo $book_details['kurztitle']; ?>">
+                <p><strong>Titel:</strong></p>
+                <input type="text" name="title" value="<?php echo $book_details['title']; ?>">
+                <p><strong>Autor:</strong></p>
+                <input type="text" name="autor" value="<?php echo $book_details['autor']; ?>">
+                <p><strong>Verfasser:</strong></p>
+                <input type="text" name="verfasser" value="<?php echo $book_details['verfasser']; ?>">
+                <p><strong>Sprache:</strong></p>
+                <input type="text" name="sprache" value="<?php echo $book_details['sprache']; ?>">
+                <p><strong>Zustand:</strong></p>
+                <input type="text" name="zustand" value="<?php echo $book_details['zustand']; ?>">
+                <br>
+                <input type="submit" name="approve_edit" value="Approve Edit" class="btn">
+                <input type="submit" name="delete" value="Delete" class="btn" style="background-color: #dc3545;">
+        </form>            
           </div>
           <div class="book-details-image">
             <img src="<?php echo $random_cover; ?>">
           </div>
+         <!-- Add New Book Button -->
+          <button class="btn" style="background-color: #ADD8E6;" onclick="location.href='newbooks.php'">Add New Book</button>
+
         </div>
         <?php
       }
