@@ -97,21 +97,60 @@
     <a href="details.php" class="nav-link">Search</a>    </div>
     </nav>
 </header>
+<?php
+// Start the session
+session_start();
+
+// Include the database configuration file
+include 'conf.php';
+
+// Check if the registration form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Retrieve the user input
+    $username = mysqli_real_escape_string($conn, $_POST['username']);
+    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+
+    // Hash the password
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
+    // Prepare the SQL statement to insert the user data into the table
+    $sql = "INSERT INTO benutzer (benutzername, passwort, email) VALUES ('$username', '$hashedPassword', '$email')";
+
+    // Execute the SQL statement
+    if (mysqli_query($conn, $sql)) {
+        // Registration successful
+        $_SESSION['message'] = "Registration successful. You can now login.";
+        header("Location: login.php");
+        exit();
+    } else {
+        // Registration failed
+        $_SESSION['error'] = "Error: " . mysqli_error($conn);
+        header("Location: register.php");
+        exit();
+    }
+}
+
+// Close the database connection
+mysqli_close($conn);
+?>
+
 
 <div class="green-box">
     <div class="login-card">
         <h2>Register</h2>
-        <form action="login.php" method="POST">
+        <form action="register.php" method="POST">
             <label for="username" class="input-label"></label>
-            <input type="text" id="username" name="username" required onfocus="if(this.value=='Username') this.value='';" onblur="if(this.value=='') this.value='Username';" value="Username">
+            <input type="text" id="username" name="username" required onfocus="if(this.value=='Username') this.value='';" onblur="if(this.value=='') this.value='Username';" value="Username" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 20px; margin-bottom: 5px; margin-left: 15%; margin-right: 15%; text-align: left; background-color: #726C6C !important;">
             <label for="email" class="input-label"></label>
-            <input type="text" id="email" name="email" required onfocus="if(this.value=='E-mail') this.value='';" onblur="if(this.value=='') this.value='E-mail';" value="E-mail">
+            <input type="text" id="email" name="email" required onfocus="if(this.value=='E-mail') this.value='';" onblur="if(this.value=='') this.value='E-mail';" value="E-mail" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 20px; margin-bottom: 5px; margin-left: 15%; margin-right: 15%; text-align: left; background-color: #726C6C !important;">
             <label for="password" class="input-label"></label>
-            <input type="password" id="password" name="password" required onfocus="if(this.value=='Password') this.value='';" onblur="if(this.value=='') this.value='Password';" value="Password">
-            <button type="submit">Submit</button>
+            <input type="password" id="password" name="password" required onfocus="if(this.value=='Password') this.value='';" onblur="if(this.value=='') this.value='Password';" value="Password" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 20px; margin-bottom: 5px; margin-left: 15%; margin-right: 15%; text-align: left; background-color: #726C6C !important;">
+            <button type="submit" style="width: 30%; padding: 10px; background-color: #fff !important; color: black; margin: 0 auto; border: none; border-radius: 4px; font-size: 30px; cursor: pointer;">Submit</button>
         </form>
     </div>
 </div>
+
 
 <script>
     // Add this to your scripts.js file

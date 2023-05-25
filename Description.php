@@ -62,7 +62,7 @@
     <p><strong>Verfasser:</strong> <?php echo $book_details['verfasser']; ?></p>
     <p><strong>Sprache:</strong> <?php echo $book_details['sprache']; ?></p>
     <p><strong>Zustand:</strong> <?php echo $book_details['zustand']; ?></p>
-
+    <button class="btn" onclick="location.href='delete.php?id=<?php echo $book_id; ?>'">Delete</button>
     <?php if (isset($book_details['text'])) { ?>
       <p><strong>Inhalt:</strong></p>
       <p><?php echo $book_details['text']; ?></p>
