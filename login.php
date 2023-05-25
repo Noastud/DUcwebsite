@@ -4,75 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Archive</title>
-    <link rel="stylesheet" href="style/styles.css?v=2">
-    <style>
-        .green-box {
-            background-color: #839788;
-            width: 1000px;
-            height: 550px;
-            margin: 0 auto;
-            margin-top: 50px;
-        }
-        .login-card {
-            width: 400px;
-            height: 550px;
-            background-color: #d9d9d9;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .login-card h2 {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 54px;
-            color: #fff;
-            margin-bottom: 30px;
-        }
-
-        .login-card label {
-            display: block;
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-
-        .login-card input[type="text"],
-        .login-card input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 20px;
-            margin-bottom: 5px;
-            margin-left:15%;
-            margin-right:15%;
-            text-align: left;
-            background-color: #726C6C !important;
-        }
-
-        .login-card input[type="text"]:hover,
-        .login-card input[type="text"]:focus,
-        .login-card input[type="password"]:hover,
-        .login-card input[type="password"]:focus {
-            color: #000;
-            background-color: #fff !important;
-        }
-        .login-card button {
-            width: 30%;
-            padding: 10px;
-            background-color: #fff !important;
-            color: black;
-            margin: 0 auto;
-            border: none;
-            border-radius: 4px;
-            font-size: 30px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="style/styles.css">
     <script src="scripts.js" defer></script>
 </head>
 <body>
@@ -125,18 +57,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit();
         } else {
             // Invalid password
-            echo "Error: Invalid password.";
+            echo '<p class="error-message">Error: Invalid password.</p>';
         }
     } else {
         // User not found
-        echo "Error: User not found.";
+        echo '<p class="error-message">Error: User not found.</p>';
     }
 }
 
 mysqli_close($conn);
 ?>
 
-<div class="green-box">
+<div class="green-boxlogin">
     <div class="login-card">
         <h2>Login</h2>
         <form action="login.php" method="POST">

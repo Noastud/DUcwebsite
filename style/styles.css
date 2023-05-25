@@ -552,18 +552,139 @@ h2.book-title {
     object-fit: cover;
   }
   
-
- .green-box {
+ .green-boxlogin {
             background-color: #839788;
-            width: 200px;
-            height: 200px;
+            width: 1000px;
+            height: 550px;
             margin: 0 auto;
-            margin-top: 100px;
-        }
+            margin-top: 50px;
+  }
 
-        #admin-button-container {
-          position: fixed;
-          top: 20px;  /* Adjust as needed */
-          right: 20px;  /* Adjust as needed */
-        }
-        
+  .login-card {
+            width: 400px;
+            height: 550px;
+            background-color: #d9d9d9;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+  }
+
+ .login-card h2 {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 54px;
+            color: #fff;
+            margin-bottom: 30px;
+ }
+
+.login-card label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+ }
+
+ .login-card input[type="text"],
+ .login-card input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 20px;
+            margin-bottom: 5px;
+            margin-left:15%;
+            margin-right:15%;
+            text-align: left;
+            background-color: #726C6C !important;
+  }
+
+ .login-card input[type="text"]:hover,
+ .login-card input[type="text"]:focus,
+ .login-card input[type="password"]:hover,
+ .login-card input[type="password"]:focus {
+            color: #000;
+            background-color: #fff !important;
+  }
+ .login-card button {
+            width: 30%;
+            padding: 10px;
+            background-color: #fff !important;
+            color: black;
+            margin: 0 auto;
+            border: none;
+            border-radius: 4px;
+            font-size: 30px;
+            cursor: pointer;
+  }
+
+  .green-box {
+    background-color: #839788;
+    width: 1000px;
+    height: 620px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.register-card {
+    width: 400px;
+    height: 620px;
+    background-color: #d9d9d9;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register-card h2 {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 54px;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.register-card label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.register-card input[type="text"],
+.register-card input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 20px;
+    margin-bottom: 5px;
+    margin-left: 15%;
+    margin-right: 15%;
+    text-align: left;
+    background-color: #726C6C !important;
+}
+
+.register-card input[type="text"]:hover,
+.register-card input[type="text"]:focus,
+.register-card input[type="password"]:hover,
+.register-card input[type="password"]:focus {
+    color: #000;
+    background-color: #fff !important;
+}
+
+.register-card button {
+    width: 50%; /* Increased width to make the button wider */
+    padding: 10px;
+    background-color: #fff !important;
+    color: black;
+    margin: 20px auto 0; /* Added margin-top to create spacing above the button */
+    border: none;
+    border-radius: 4px;
+    font-size: 30px;
+    cursor: pointer;
+}
