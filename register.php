@@ -9,14 +9,14 @@
         .green-box {
             background-color: #839788;
             width: 1000px;
-            height: 550px;
+            height: 620px;
             margin: 0 auto;
             margin-top: 50px;
         }
 
         .login-card {
             width: 400px;
-            height: 550px;
+            height: 620px;
             background-color: #d9d9d9;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -64,15 +64,29 @@
         }
 
         .login-card button {
-            width: 30%;
+            width: 50%; /* Increased width to make the button wider */
             padding: 10px;
             background-color: #fff !important;
             color: black;
-            margin: 0 auto;
+            margin: 20px auto 0; /* Added margin-top to create spacing above the button */
             border: none;
             border-radius: 4px;
             font-size: 30px;
             cursor: pointer;
+        }
+
+        .login-card .admin-checkbox {
+            display: flex;
+            align-items: center;
+            margin-left: auto; /* Align the checkbox to the right */
+            margin-right: 15%;
+            margin-bottom: 10px; /* Adjusted margin to provide spacing between checkbox and button */
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .login-card .admin-checkbox label {
+            margin-left: 5px;
         }
     </style>
     <script src="scripts.js" defer></script>
@@ -142,10 +156,16 @@ mysqli_close($conn);
         <form action="register.php" method="POST">
             <label for="username" class="input-label"></label>
             <input type="text" id="username" name="username" required onfocus="if(this.value=='Username') this.value='';" onblur="if(this.value=='') this.value='Username';" value="Username" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 20px; margin-bottom: 5px; margin-left: 15%; margin-right: 15%; text-align: left; background-color: #726C6C !important;">
+            <label for="name" class="input-label"></label>
+            <input type="text" id="name" name="name" required onfocus="if(this.value=='Name') this.value='';" onblur="if(this.value=='') this.value='Name';" value="Name" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 20px; margin-bottom: 5px; margin-left: 15%; margin-right: 15%; text-align: left; background-color: #726C6C !important;">
+            <label for="vorname" class="input-label"></label>
+            <input type="text" id="vorname" name="vorname" required onfocus="if(this.value=='Vorname') this.value='';" onblur="if(this.value=='') this.value='Vorname';" value="Vorname" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 20px; margin-bottom: 5px; margin-left: 15%; margin-right: 15%; text-align: left; background-color: #726C6C !important;">
             <label for="email" class="input-label"></label>
             <input type="text" id="email" name="email" required onfocus="if(this.value=='E-mail') this.value='';" onblur="if(this.value=='') this.value='E-mail';" value="E-mail" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 20px; margin-bottom: 5px; margin-left: 15%; margin-right: 15%; text-align: left; background-color: #726C6C !important;">
             <label for="password" class="input-label"></label>
             <input type="password" id="password" name="password" required onfocus="if(this.value=='Password') this.value='';" onblur="if(this.value=='') this.value='Password';" value="Password" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 20px; margin-bottom: 5px; margin-left: 15%; margin-right: 15%; text-align: left; background-color: #726C6C !important;">
+            <label for="admin" class="input-label"></label>
+
             <button type="submit" style="width: 30%; padding: 10px; background-color: #fff !important; color: black; margin: 0 auto; border: none; border-radius: 4px; font-size: 30px; cursor: pointer;">Submit</button>
         </form>
     </div>
