@@ -40,7 +40,8 @@
     <div id="hamburger-menu" class="hidden">
             <a href="index.php" class="nav-link">Home</a>
             <a href="bookoverview.php" class="nav-link">Book Overview</a>
-            <a href="bookoverview.php" class="nav-link">K</a>
+            <a href="nutzer.php" class="nav-link">Nutzer</a>
+        </div>
         </div>
   </nav>
 </header>   

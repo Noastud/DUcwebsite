@@ -688,3 +688,29 @@ h2.book-title {
     font-size: 30px;
     cursor: pointer;
 }
+
+
+.main-contentnutzer {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.nutzer {
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 5px;
+  text-align: center;
+  width: 300px;
+}
+
+.nutzer h3 {
+  font-size: 18px;
+  margin: 0 0 10px;
+}
+
+.nutzer p {
+  margin: 0;
+}
