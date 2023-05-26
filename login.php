@@ -31,44 +31,44 @@
 <?php
 session_start();
 include 'conf.php';
-
+// fragt nach dem Benutzernamen und Passwort
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
-    // Prepare the SQL statement to retrieve the user data from the table
+    // bereitet die Eingaben vor 
     $sql = "SELECT * FROM benutzer WHERE benutzername = '$username'";
 
-    // Execute the SQL statement
+    // führt die Abfrage aus
     $result = mysqli_query($conn, $sql);
 
-    // Check if a matching row is found
+    // überprüft, ob der Benutzername existiert
     if (mysqli_num_rows($result) === 1) {
         $row = mysqli_fetch_assoc($result);
 
-        // Verify the password
+        // verifiziert das Passwort
         if (password_verify($password, $row['passwort'])) {
-            // Password is correct, create a session
+            // wenn das passwort korrekt ist, wird der Benutzer eingeloggt
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $row['benutzername'];
             $_SESSION['admin'] = $row['admin'];
 
-            // Redirect to the desired page after successful login
+            // leitet den Benutzer weiter zur Buchübersicht
             header("Location: bookoverview.php");
             exit();
         } else {
-            // Invalid password
+            // error message wenn das Passwort falsch ist
             echo '<p class="error-message">Error: Invalid password.</p>';
         }
     } else {
-        // User not found
+        // error message wenn der user nicht gefunden wurde
         echo '<p class="error-message">Error: User not found.</p>';
     }
 }
 
 mysqli_close($conn);
 ?>
-
+<!-- Login Formular -->
 <div class="green-boxlogin">
     <div class="login-card">
         <h2>Login</h2>

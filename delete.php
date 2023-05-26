@@ -41,23 +41,23 @@
 </head>
 <body class="difback">
 <header>
-  <!-- Code for redirection to index.php, serves as a logo for quick access to the main page. -->
+   <!--code für weiterleitung an index.php dient als logo für schnellen zugriff auf hauptseite-->
   <button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
     <div class="logo">
       <h1>Bookly</h1>
     </div>
   </button>
-  <!-- Code for the navigation bar, login, and hamburger menu. -->
+  <!-- Code für  navigation bar, login, und hamburger menu. -->
   <nav>
   <?php
         session_start();
 
-        // Check if the user is logged in
+        // Überprüft ob der User eingeloggt ist
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-            // User is logged in, show the "Logout" button
+            // Zeigt den "Logout" button an
             echo '<button class="btn" onclick="location.href=\'logout.php\'">Logout</button>';
         } else {
-            // User is not logged in, show the "Login" button
+            // Zeigt den "Login" button an
             echo '<button class="btn" onclick="location.href=\'login.php\'">Login</button>';
         }
         ?>
@@ -69,14 +69,13 @@
     <div id="hamburger-menu" class="hidden">
             <a href="index.php" class="nav-link">Home</a>
             <a href="bookoverview.php" class="nav-link">Book Overview</a>
-            <a href="bookoverview.php" class="nav-link">Search</a>
+            <a href="bookoverview.php" class="nav-link">K</a>
         </div>
   </nav>
 </header>   
 <div class="wrapper">
   <div class="box">
   <?php
-  // Start the session
   include 'conf.php';
 
   if (isset($_GET['id'])) {

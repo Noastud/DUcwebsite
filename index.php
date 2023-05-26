@@ -16,15 +16,15 @@
         </div>
     </button>
     <nav>
-        <?php
+    <?php
         session_start();
 
-        // Check if the user is logged in
+        // Überprüft ob der User eingeloggt ist
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-            // User is logged in, show the "Logout" button
+            // Zeigt den "Logout" button an
             echo '<button class="btn" onclick="location.href=\'logout.php\'">Logout</button>';
         } else {
-            // User is not logged in, show the "Login" button
+            // Zeigt den "Login" button an
             echo '<button class="btn" onclick="location.href=\'login.php\'">Login</button>';
         }
         ?>

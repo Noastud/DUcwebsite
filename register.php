@@ -118,6 +118,7 @@ mysqli_close($conn);
             unset($_SESSION['error']);
         }
         ?>
+        <!-- Formular für die Registrierung des users   --->
         <form action="register.php" method="POST">
             <label for="username" class="input-label"></label>
             <input type="text" id="username" name="username" required onfocus="if(this.value=='Username') this.value='';" onblur="if(this.value=='') this.value='Username';" value="Username" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 20px; margin-bottom: 5px; margin-left: 15%; margin-right: 15%; text-align: left; background-color: #726C6C !important;">

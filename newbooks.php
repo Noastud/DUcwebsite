@@ -8,27 +8,28 @@
 </head>
 <body>
 <header>
-  <!-- Code for redirection to index.php, serves as a logo for quick access to the main page. -->
-  <button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
+    <!--code für weiterleitung an index.php dient als logo für schnellen zugriff auf hauptseite-->
+    <button onclick="location.href='index.php'" style="background:none; border:none; font-size: 30px;">
     <div class="logo">
       <h1>Bookly</h1>
     </div>
   </button>
-  <!-- Code for the navigation bar, login, and hamburger menu. -->
+  
   <nav>
   <?php
         session_start();
         include 'conf.php';
 
-        // Check if the user is logged in
+        // überprüft ob der User eingeloggt ist
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-            // User is logged in, show the "Logout" button
+            // wenn der User eingeloggt ist, zeige den "Logout" button an
             echo '<button class="btn" onclick="location.href=\'logout.php\'">Logout</button>';
         } else {
-            // User is not logged in, show the "Login" button
+            // wenn der user nicht einngeloggt ist, zeige den "Login" button an
             echo '<button class="btn" onclick="location.href=\'login.php\'">Login</button>';
         }
         ?>
+        <!-- Hamburger menu -->
     <hamburger-icon>
       <span></span>
       <span></span>
@@ -41,6 +42,7 @@
         </div>
   </nav>
 </header>   
+<!-- Form um neues buch hinzuzufügen  -->
 <div class="wrapper">
     <h2>Add New Book</h2>
     <form method="post" action="">
@@ -62,9 +64,9 @@
 </div>
 
 <?php
-// Check if the form is submitted
+//überprüft ob das form ausgefüllt wurde
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_book'])) {
-    // Get the input values from the form
+    // hohlt die daten aus dem form
     $kurztitle = mysqli_real_escape_string($conn, $_POST['kurztitle']);
     $title = mysqli_real_escape_string($conn, $_POST['title']);
     $autor = mysqli_real_escape_string($conn, $_POST['autor']);
@@ -72,17 +74,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_book'])) {
     $sprache = mysqli_real_escape_string($conn, $_POST['sprache']);
     $zustand = mysqli_real_escape_string($conn, $_POST['zustand']);
 
-    // SQL statement to insert the new book into the database
+    // SQL query um die daten in die datenbank zu speichern
     $sql_add_book = "INSERT INTO buecher (kurztitle, title, autor, verfasser, sprache, zustand)
                      VALUES ('$kurztitle', '$title', '$autor', '$verfasser', '$sprache', '$zustand')";
 
-    // Execute the query
+    // query wird ausgeführt
     if (mysqli_query($conn, $sql_add_book)) {
         echo "Book added successfully.";
-        // Redirect to a desired page after successful addition
+        // wenn es funktioniert hat wird der user auf die bookoverview seite weitergeleitet
         header("Location: bookoverview.php");
         exit();
     } else {
+      // wenn es nicht funktioniert hat wird ein error ausgegeben
         echo "Error adding book: " . mysqli_error($conn);
     }
 }

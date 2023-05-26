@@ -17,12 +17,12 @@
   <?php
         session_start();
 
-        // Check if the user is logged in
+        // überprüft ob der user eingeloggt ist
         if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
-            // User is logged in, show the "Logout" button
+            // wenn der user eingeloggt ist wird der logout button angezeigt
             echo '<button class="btn" onclick="location.href=\'logout.php\'">Logout</button>';
         } else {
-            // User is not logged in, show the "Login" button
+            // wenn der user nicht eingeloggt ist wird der login button angezeigt
             echo '<button class="btn" onclick="location.href=\'login.php\'">Login</button>';
         }
         ?>
@@ -47,6 +47,7 @@ if (!in_array($sort, $sort_options)) {
     $sort = 'default';
 }
 ?>
+<!--code für sortierungs formular-->
     <div>
   <form>
     <label for="sort">Sort by:</label>
@@ -58,7 +59,7 @@ if (!in_array($sort, $sort_options)) {
     </select>
   </form>
 </div>
-
+<!--code für suchleiste-->
 <div class="search-bar">
     <form method="post" action="">
         <input type="text" name="search_query" placeholder="Search..." onfocus="showPopup()">
@@ -71,7 +72,7 @@ if (!in_array($sort, $sort_options)) {
     <?php
      include 'conf.php';
 
-    // Added the search handling PHP code here
+    // php code für die suche
     if (isset($_POST['search_btn'])) {
         $search_query = mysqli_real_escape_string($conn, $_POST['search_query']);
         $sql = "SELECT id, kurztitle, autor, sprache, zustand FROM buecher WHERE kurztitle LIKE '%$search_query%' OR autor LIKE '%$search_query%' OR zustand LIKE '%$search_query%'";
@@ -83,8 +84,6 @@ if (!in_array($sort, $sort_options)) {
         }
     }
 
-    // Rest of your PHP code
-    // ...
     ?>
     </div>
 </div>
