@@ -74,8 +74,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Überprüfe, ob der Benutzername bereits verwendet wird
-    $sql = "SELECT * FROM benutzer WHERE benutzername = '$username'";
-    $result = mysqli_query($conn, $sql);
+    $sql = "SELECT * FROM benutzer WHERE benutzername = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
 
     if (mysqli_num_rows($result) > 0) {
         $_SESSION['error'] = "Username already taken.";
@@ -87,10 +90,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Bereite das SQL-Statement vor, um die Benutzerdaten in die Tabelle einzufügen
-    $sql = "INSERT INTO benutzer (benutzername, passwort, email) VALUES ('$username', '$hashedPassword', '$email')";
-
+    $sql = "INSERT INTO benutzer (benutzername, passwort, email) VALUES (?, ?, ?)";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "sss", $username, $hashedPassword, $email);
+    
     // Führe das SQL-Statement aus
-    if (mysqli_query($conn, $sql)) {
+    if (mysqli_stmt_execute($stmt)) {
         // Registrierung erfolgreich
         $_SESSION['message'] = "Registration successful. You can now login.";
         header("Location: login.php");

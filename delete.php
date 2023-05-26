@@ -6,36 +6,7 @@
     <title>Book Archive - Edit Page</title>
     <link rel="stylesheet" href="style/styles.css?v=2">
     <style>
-      /* Custom styles for the input fields */
-      input[type="text"] {
-        width: 100%;
-        padding: 8px;
-        font-size: 16px;
-        border: none;
-        border-radius: 4px;
-        background-color: #f2f2f2;
-        margin-bottom: 10px;
-        color: black;
-      }
-
-      /* Custom styles for the book details */
-      .book-details {
-        display: flex;
-        align-items: flex-start;
-      }
-
-      .book-details-text-container {
-        flex: 1;
-      }
-
-      .book-details-image {
-        margin-left: 20px;
-      }
-
-      .book-details-image img {
-        width: 300px;
-        height: 450px;
-      }
+  
     </style>
     <script src="script/script.js"></script>
 </head>
@@ -90,10 +61,14 @@
       // Check if the delete action is triggered
       if (isset($_POST['delete'])) {
         // SQL statement to delete the book entry
-        $sql_delete_book = "DELETE FROM buecher WHERE id = '$book_id'";
+        $sql_delete_book = "DELETE FROM buecher WHERE id = ?";
+
+        // Prepare the statement
+        $stmt = mysqli_prepare($conn, $sql_delete_book);
+        mysqli_stmt_bind_param($stmt, "s", $book_id);
 
         // Execute the query
-        if (mysqli_query($conn, $sql_delete_book)) {
+        if (mysqli_stmt_execute($stmt)) {
           echo "Book deleted successfully.";
           // Redirect to a desired page after successful deletion
           header("Location: index.php");
@@ -114,13 +89,17 @@
 
         // SQL statement to update the book entry
         $sql_update_book = "UPDATE buecher 
-                            SET title = '$updated_title', autor = '$updated_autor', 
-                                verfasser = '$updated_verfasser', sprache = '$updated_sprache', 
-                                zustand = '$updated_zustand' 
-                            WHERE id = '$book_id'";
+                            SET title = ?, autor = ?, 
+                                verfasser = ?, sprache = ?, 
+                                zustand = ? 
+                            WHERE id = ?";
+
+        // Prepare the statement
+        $stmt = mysqli_prepare($conn, $sql_update_book);
+        mysqli_stmt_bind_param($stmt, "ssssss", $updated_title, $updated_autor, $updated_verfasser, $updated_sprache, $updated_zustand, $book_id);
 
         // Execute the query
-        if (mysqli_query($conn, $sql_update_book)) {
+        if (mysqli_stmt_execute($stmt)) {
           echo "Book updated successfully.";
           // Refresh the page to show the updated details
           header("Location: details.php?id=$book_id");
@@ -134,14 +113,17 @@
     // SQL statement to get the details of the book
     $sql_book_details = "SELECT * 
                          FROM buecher 
-                         WHERE id = '$book_id'";
+                         WHERE id = ?";
+    // Prepare the statement
+    $stmt = mysqli_prepare($conn, $sql_book_details);
+    mysqli_stmt_bind_param($stmt, "s", $book_id);
     // Execute the query
-    $result_book_details = $conn->query($sql_book_details);
+    $result_book_details = mysqli_stmt_execute($stmt);
 
     // Check if the query was successful
     if ($result_book_details) {
-      if (mysqli_num_rows($result_book_details) > 0) {
-        $book_details = $result_book_details->fetch_assoc();
+      if (mysqli_stmt_num_rows($stmt) > 0) {
+        $book_details = mysqli_stmt_get_result($stmt)->fetch_assoc();
         $random_cover = "https://picsum.photos/300/450?random=" . $book_details['id'];
         ?>
         <div class="book-details">
@@ -181,7 +163,7 @@
     echo "No book ID provided.";
   }
 
-  $conn->close();
+  mysqli_close($conn);
   ?>
   </div>
 </div>

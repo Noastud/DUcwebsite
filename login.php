@@ -31,16 +31,22 @@
 <?php
 session_start();
 include 'conf.php';
+
 // fragt nach dem Benutzernamen und Passwort
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = mysqli_real_escape_string($conn, $_POST['username']);
     $password = mysqli_real_escape_string($conn, $_POST['password']);
 
     // bereitet die Eingaben vor 
-    $sql = "SELECT * FROM benutzer WHERE benutzername = '$username'";
+    $sql = "SELECT * FROM benutzer WHERE benutzername = ?";
+
+    // bereitet das SQL-Statement vor
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
 
     // führt die Abfrage aus
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_stmt_get_result($stmt);
 
     // überprüft, ob der Benutzername existiert
     if (mysqli_num_rows($result) === 1) {

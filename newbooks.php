@@ -67,27 +67,36 @@
 //überprüft ob das form ausgefüllt wurde
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_book'])) {
     // hohlt die daten aus dem form
-    $kurztitle = mysqli_real_escape_string($conn, $_POST['kurztitle']);
-    $title = mysqli_real_escape_string($conn, $_POST['title']);
-    $autor = mysqli_real_escape_string($conn, $_POST['autor']);
-    $verfasser = mysqli_real_escape_string($conn, $_POST['verfasser']);
-    $sprache = mysqli_real_escape_string($conn, $_POST['sprache']);
-    $zustand = mysqli_real_escape_string($conn, $_POST['zustand']);
+    $kurztitle = $_POST['kurztitle'];
+    $title = $_POST['title'];
+    $autor = $_POST['autor'];
+    $verfasser = $_POST['verfasser'];
+    $sprache = $_POST['sprache'];
+    $zustand = $_POST['zustand'];
 
     // SQL query um die daten in die datenbank zu speichern
     $sql_add_book = "INSERT INTO buecher (kurztitle, title, autor, verfasser, sprache, zustand)
-                     VALUES ('$kurztitle', '$title', '$autor', '$verfasser', '$sprache', '$zustand')";
+                     VALUES (?, ?, ?, ?, ?, ?)";
 
-    // query wird ausgeführt
-    if (mysqli_query($conn, $sql_add_book)) {
+    // Prepared Statement vorbereiten
+    $stmt = $conn->prepare($sql_add_book);
+
+    // Parameter binden
+    $stmt->bind_param("ssssss", $kurztitle, $title, $autor, $verfasser, $sprache, $zustand);
+
+    // Statement ausführen
+    if ($stmt->execute()) {
         echo "Book added successfully.";
         // wenn es funktioniert hat wird der user auf die bookoverview seite weitergeleitet
         header("Location: bookoverview.php");
         exit();
     } else {
       // wenn es nicht funktioniert hat wird ein error ausgegeben
-        echo "Error adding book: " . mysqli_error($conn);
+        echo "Error adding book: " . $stmt->error;
     }
+
+    // Statement schließen
+    $stmt->close();
 }
 
 $conn->close();
